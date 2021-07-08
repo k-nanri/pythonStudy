@@ -8,4 +8,4 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/101]
+ [https://www.python.ambitious-engineer.com/archives/113]
