@@ -1,4 +1,6 @@
 import sys
+import numbers
+import math
 
 print("Hello World")
 
@@ -81,7 +83,50 @@ if __name__ == '__main__':
     z3 = x / y
     print(z3)
 
-    
+    x = 16
+    y = 3
+    val = x + y
+    print(val) # 19
+
+    val = x - y
+    print(val) # 13
+
+    val = x * y
+    print(val) # 48
+
+    val = x / y
+    print(val) # 5.33333333
+
+    val = x // y
+    print(val) # 5
+    val = x % y
+    print(val)
+
+    val = int(x / y)
+    print(val) # 5
+
+    val = float(x)
+    print(val) # 16.0
+
+    # 複素数
+    val = 3 + 5j
+    print(val.conjugate()) # (3-5j)
+    # 乗数
+    val = pow(2, 3)
+    print(val) # 8
+    val = 2 ** 3
+    print(val)
+
+    # 数値はTrue
+    print(isinstance(1, numbers.Number))
+    print(isinstance('Text', numbers.Number))
+
+    # 指数関数
+    val = math.exp(2)
+    print(val)
+    # 対数関数
+
+    # 三角関数
 
 
 
