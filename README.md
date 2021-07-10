@@ -20,4 +20,19 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/204]
+ [https://www.python.ambitious-engineer.com/archives/190]
+
+ ## メモ
+
+ ### bool型
+
+ 複数の論理演算を行う場合、演算子の優先順位は not , and , or の順。
+ 可読性の観点から括弧をつけル方がよい。
+
+```python
+ b = b1 or (b2 and b3)
+```
+
+bool型はint型のサブクラスとして定義されているため、int型への変換が可能。
+
+
