@@ -20,7 +20,7 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/190]
+ [https://www.python.ambitious-engineer.com/archives/134]
 
  ## メモ
 
@@ -39,3 +39,8 @@ bool型はint型のサブクラスとして定義されているため、int型�
 
 値が存在しない場合は、Noneを使用する。  
 CやJavaのnullに相当する。
+
+### タプル
+
+タプルはリストとは異なり、後から値や順序を変更することができないシーケンス  
+イミュータブルな性質を持つ。
