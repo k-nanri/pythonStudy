@@ -21,6 +21,7 @@
 
  次はここのページ
  [https://www.python.ambitious-engineer.com/archives/134]
+ スライス構文のところから
 
  ## メモ
 
