@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/134]
- スライス構文のところから
+ [https://www.python.ambitious-engineer.com/archives/137]
+list型の更新 
 
  ## メモ
 
