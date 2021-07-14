@@ -29,4 +29,16 @@ if __name__ == '__main__':
 
     l2 = ['a', 'b', 'c' , 'd', 'e']
     print(l2[0:1])
-    
+    print(l2[0:2])
+    print(l2[1:4])
+    print(l2[0:-1])
+    print(l2[0:])
+    print(l2[:99])
+
+    print(len(l2))
+    print(l2[len(l2) - 1])
+
+
+    l = [1, 2, 3, 4, 0]
+    l[0] = 99
+    print("l = ", l)
