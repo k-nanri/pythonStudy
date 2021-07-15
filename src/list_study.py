@@ -42,3 +42,52 @@ if __name__ == '__main__':
     l = [1, 2, 3, 4, 0]
     l[0] = 99
     print("l = ", l)
+
+    # Add Value
+    l.append(10)
+    print(l)
+
+    # Insert
+    # index number is 0
+    l.insert(0, 80)
+    print(l)
+
+    # index number is 2
+    l.insert(2, 70)
+    print(l)
+
+    # last (末尾に追加ではない)
+    l.insert(-1, 100)
+    print(l)
+
+    l.remove(100)
+    print(l)
+
+    try:
+        l.remove(100)
+    except Exception as e:
+        print(e)
+
+    l = ['a', 'b', 'c', 'd']
+
+    del l[2]
+    print(l)
+
+    l = ['a', 'b', 'c', 'd']
+    del l[-1]
+    print(l)
+
+    l = ['a', 'b', 'c', 'd']
+    del l[0:2]
+    print(l)
+
+    l = ['a', 'b', 'c', 'd']
+    x = l.pop(2)
+    print(x)
+    print(l)
+
+    
+
+
+
+    
