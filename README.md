@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/168]
-list型 順序ソート
+ [https://www.python.ambitious-engineer.com/archives/198]
+range型
 
  ## メモ
 
@@ -45,3 +45,4 @@ CやJavaのnullに相当する。
 
 タプルはリストとは異なり、後から値や順序を変更することができないシーケンス  
 イミュータブルな性質を持つ。
+タプルはリストよりも少し高速に処理が可能。  
