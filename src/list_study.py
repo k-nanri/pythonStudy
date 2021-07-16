@@ -86,8 +86,33 @@ if __name__ == '__main__':
     print(x)
     print(l)
 
+    # Sort
+    l1 = ['d', 'b', 'c', 'a']
+    l2 = sorted(l1)
+    print(l2)
+    l2 = sorted(l1, reverse=True)
+    print(l2)
+
+    l1 = ['bc', 'ac', 'bD', 'AB']
+    l2 = sorted(l1)
+    print(l2)
+
+    l2 = sorted(l1, key=str.lower)
+    print(l2)
+
+    l1 = ['d', 'b', 'c', 'a']
+    l1.sort()
+    print(l1)
+
+    l1 = ['d', 'b', 'c', 'a']
+    l1.sort(reverse=True)
+    print(l1)
+
+    l1 = ['d', 'b', 'c', 'a']
+    l1.sort(key=str.lower)
+    print(l1)
+
     
 
 
 
-    
