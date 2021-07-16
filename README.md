@@ -20,7 +20,7 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/165]
+ [https://www.python.ambitious-engineer.com/archives/168]
 list型 順序ソート
 
  ## メモ
