@@ -112,6 +112,9 @@ if __name__ == '__main__':
     l1.sort(key=str.lower)
     print(l1)
 
+    for item in l1:
+        print("loop = ", item)
+
     
 
 
