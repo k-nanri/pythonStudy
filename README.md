@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/488]
-シーケンス型共通演算
+ [https://www.python.ambitious-engineer.com/archives/70]
+set型の基本
 
  ## メモ
 
