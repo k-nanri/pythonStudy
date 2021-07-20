@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/70]
-set型の基本
+ [https://www.python.ambitious-engineer.com/archives/172]
+set型と集合演算
 
  ## メモ
 
@@ -51,4 +51,9 @@ CやJavaのnullに相当する。
 
 整数を要素とするイミュータブルなシーケンスを作成するオブジェクト。
 初期化の際にシーケンスのサイズや値の範囲、スキップ等を指定することができる。
+
+### set
+
+順序は保持せずに、ユニークな値を持つ
+frozensetはイミュータブルなsetを生成する
 
