@@ -48,3 +48,38 @@ if __name__ == '__main__':
     for item in fs:
         print(item)
     
+    # Union
+    s1 = {'A', 'B', 'C'}
+    s2 = {'C', 'D', 'E'}
+    s = s1.union(s2)
+    print("Union")
+    print("s = ", s)
+    print("s1 = ", s1)
+
+    # Intersection (積集合)
+    s = s1.intersection(s2)
+    print("Intersection")
+    print("s = ", s)
+
+    # Difference (差集合)
+    s = s1.difference(s2)
+    print("Difference")
+    print("s = ", s)
+
+    # 含まれているかどうかを判定
+    s1 = {'A', 'B'}
+    s2 = {'A', 'B', 'C'}
+    print("issubet = ", s1.issubset(s2))
+
+    # 含んでいるかどうかを判定
+    s1 = {'A', 'B', 'C'}
+    s2 = {'A', 'B'}
+    # s1がs2を含んでいるか？
+    print("issuperset = ", s1.issuperset(s2))
+
+    
+
+
+
+
+

@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/172]
-set型と集合演算
+ [https://www.python.ambitious-engineer.com/archives/180]
+dictionary型
 
  ## メモ
 
