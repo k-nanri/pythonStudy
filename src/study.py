@@ -126,7 +126,34 @@ if __name__ == '__main__':
     print(val)
     # 対数関数
 
-    # 三角関数
+    # イミュータブルか確認する
+    num = 100
+    text = "aaaa"
+    dic = {'key': 200}
+
+    print("num id = ", id(num))
+    print("text id = ", id(text))
+    print("dic id = ", id(dic))
+
+    text1 = "aaa"
+    text2 = text1
+    text3 = text1 + 'bbb'
+    print("text1 id = ", id(text1))
+    text1_id = id(text1)
+    print("text2 id = ", id(text2))
+    print("text3 id = ", id(text3))
+
+    text1 = "bbb"
+    print("text1 id = ", id(text1))
+    text1_id_af = id(text1)
+
+    if text1_id == text1_id_af:
+        print("text1 id は同一です")
+    else:
+        print("text1 id は異なっています")
+
+    
+
 
 
 
