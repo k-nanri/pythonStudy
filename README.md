@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/180]
-dictionary型
+ [https://www.python.ambitious-engineer.com/archives/228]
+関係演算
 
  ## メモ
 
