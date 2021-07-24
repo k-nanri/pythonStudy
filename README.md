@@ -20,8 +20,8 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/263]
-内部関数とnonlocal宣言
+ [https://www.python.ambitious-engineer.com/archives/275]
+ジェネレータ
 
 後回し
 リスト内包表記
