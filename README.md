@@ -23,6 +23,10 @@
  [https://www.python.ambitious-engineer.com/archives/228]
 関係演算
 
+後回し
+リスト内包表記
+[https://www.python.ambitious-engineer.com/archives/154]
+
  ## メモ
 
  ### bool型
@@ -62,3 +66,21 @@ frozensetはイミュータブルなsetを生成する
 キーに対して値が設定された表のようなデータ構造のこと。  
 日本語では辞書、プログラミング言語によってはハッシュと呼びます。
 
+### for文
+
+dictionary型のvalueだけを取得したい場合は、valuesメソッドを使用する。  
+dictionary型のkey,valueを取得したい場合は、itemsメソッドを使用する。
+
+```python
+dic = {"key1":110, "key2":222, "key3":333}
+for key, value in dic.items():
+    print("key = ", key, ", value = ", value)
+
+```
+
+何番目の要素だけは処理しない等の処理を入れたい場合はenumerate関数を使用したループインデックスを利用する。
+
+```python
+for i, value in enumerate(l):
+    print(i, value)
+```

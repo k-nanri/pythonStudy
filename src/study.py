@@ -152,6 +152,90 @@ if __name__ == '__main__':
     else:
         print("text1 id は異なっています")
 
+    x = 3
+    y = 3
+    z = 7
+
+    b1 = (x == y)
+    b2 = (x == z)
+
+    print("b1 = ", b1)
+    print("b2 = ", b2)
+
+    x = [1, 2]
+    y = x
+    z = [1, 2]
+
+    b1 = (x == y)
+    b2 = (z == z)
+    print("b1 = ", b1)
+    print("b2 = ", b2)
+
+    b3 = (x is y)
+    b4 = (x is z)
+    print("b3 = ", b3)
+    print("b4 = ", b4)
+
+    x = 3
+    y = 5
+    z = 7
+    print("x < y = ", x < y)
+    print("x < y < z = ", x < y < z)
+
+    # for文
+    datas = ['a', 'b', 'c']
+    for v in datas:
+        print("v = ", v)
+
+    print("for in range")
+    for v in range(1, 5, 2):
+        print("v = ", v)
+
+    print("for in dectionary")
+    dic = {'key1': 110, "key2": 270, "key3": 570}
+    for key in dic:
+        print("dic[key] = ", dic[key])
+
+    # dictionary型の値でループしたい場合、valuesメソッドを使用
+    print("for in dectionary's values method")
+    for value in dic.values():
+        print("value = ", value)
+
+    # dictionary型のkey,valueの両方を取得したい場合は、itemsメソッドを使用
+    for key, value in dic.items():
+        print("key = ", key, ", value = ", value)
+
+    l = ['a', 'b', 'c']
+    for i, value in enumerate(l):
+        print("index = ", i, ", value = ", value)
+
+    # dictionary型
+    for i, (key, value) in enumerate(dic.items()):
+        print(i, key, value)
+
+    
+    data_list = [1, 2, 3]
+
+    for data in data_list:
+        print("data = ", data)
+        if data > 1:
+            print("Break!!!")
+            break
+    
+    data_list = []
+    for data in data_list:
+        print("data = ", data)
+    else:
+        print("ループ処理が終わりました")
+
+    l = [0, 3, 1, 10]
+    for x in l:
+        if x < 0:
+            print("負の数を検知しました")
+            break
+    else:
+        print("負の数は見つかりませんでした")
+
     
 
 
