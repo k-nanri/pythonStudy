@@ -20,8 +20,7 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/275]
-ジェネレータ
+ [https://www.python.ambitious-engineer.com/archives/283]
 
 後回し
 リスト内包表記
