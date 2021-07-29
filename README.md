@@ -20,7 +20,7 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/295]
+ [https://www.python.ambitious-engineer.com/archives/331]
 
 後回し
 リスト内包表記
