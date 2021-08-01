@@ -1,13 +1,32 @@
 import math
 
+class Base1:
+    def func1(self):
+        print("func1")
+
+class Base2:
+    def func2(self):
+        print("func2")
+
+class Sub2(Base1, Base2):
+    def func(self):
+        super().func1()
+        super().func2()
 
 class Base:
     def func1(self):
         print('funct1')
 
+    def over(self):
+        print("over function")
+
 class Sub(Base):
     def func2(self):
+        super().func1()
         print('func2')
+
+    def over(self):
+        print("Sub over function")
 
 class MyClass():
     remark = "A"
@@ -105,9 +124,13 @@ if __name__ == '__main__':
     print("dist = ", dist)
 
     obj = Sub()
-    obj.func1()
+    #obj.func1()
     obj.func2()
+    obj.over()
     
+    obj = Sub2()
+    obj.func()
+
 
     
 
