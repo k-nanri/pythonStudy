@@ -1,5 +1,14 @@
 import math
 
+
+class Base:
+    def func1(self):
+        print('funct1')
+
+class Sub(Base):
+    def func2(self):
+        print('func2')
+
 class MyClass():
     remark = "A"
 
@@ -94,6 +103,11 @@ if __name__ == '__main__':
 
     dist = Coordinate.calc_dist(cood1, cood2)
     print("dist = ", dist)
+
+    obj = Sub()
+    obj.func1()
+    obj.func2()
+    
 
     
 
