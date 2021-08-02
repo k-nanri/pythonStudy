@@ -73,6 +73,18 @@ class Coordinate:
     def __str__(self):
         return "({0},{1})".format(self.x, self.y)
 
+
+class MyClass2:
+    def __new__(cls):
+        print('__new__')
+        print("cls = ", cls)
+
+    def __init__(self):
+        print('__init__')
+
+    def __str__(self):
+        return 'test'
+
 if __name__ == '__main__':
 
     cood = Coordinate()
@@ -131,6 +143,8 @@ if __name__ == '__main__':
     obj = Sub2()
     obj.func()
 
+    # インスタンスアロケータの確認
+    obj = MyClass2()
 
     
 
