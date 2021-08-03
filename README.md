@@ -20,7 +20,7 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/323]
+ [https://www.python.ambitious-engineer.com/archives/344]
 
 後回し
 リスト内包表記
@@ -83,3 +83,8 @@ for key, value in dic.items():
 for i, value in enumerate(l):
     print(i, value)
 ```
+
+### Pythoneにはプライベート変数はない
+
+プライベート変数はないが、アンダースコア２つで始まり、末尾がアンダースコア１つ以下となる変数名の場合、その変数に対する外部からアクセスするとAttributeErrorを発生させることができる。
+
