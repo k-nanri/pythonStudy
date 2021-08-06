@@ -20,7 +20,7 @@
  [https://www.python.ambitious-engineer.com/archives/40]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/344]
+ [https://www.python.ambitious-engineer.com/archives/336]
 
 後回し
 リスト内包表記
@@ -87,4 +87,14 @@ for i, value in enumerate(l):
 ### Pythoneにはプライベート変数はない
 
 プライベート変数はないが、アンダースコア２つで始まり、末尾がアンダースコア１つ以下となる変数名の場合、その変数に対する外部からアクセスするとAttributeErrorを発生させることができる。
+
+### プロパティ
+
+専用のアクセス用メソッドを経由して処理を行うためにプロパティと呼ばれる組み込みデコレータがある。
+
+| プロパティ | 機能 |
+| --------- | ---- |
+| @property | getter |
+| @属性名.setter | setter |
+| @属性名.deleter | deleter |
 
