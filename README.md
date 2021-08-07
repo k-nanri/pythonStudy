@@ -16,11 +16,8 @@
 
  [https://www.atmarkit.co.jp/ait/articles/1904/05/news021.html#simplehelloworld]
 
-ここを実施中  
- [https://www.python.ambitious-engineer.com/archives/40]
-
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/336]
+ [https://www.python.ambitious-engineer.com/archives/395]
 
 後回し
 リスト内包表記
