@@ -25,6 +25,12 @@
 後回し
 リスト内包表記
 [https://www.python.ambitious-engineer.com/archives/154]
+クラスデコレータ
+[https://www.python.ambitious-engineer.com/archives/348]
+基本的な特殊メソッドと_str_
+オブジェクト同士の演算
+変数の型を判定するその2type関数
+
 
  ## メモ
 
