@@ -101,3 +101,11 @@ for i, value in enumerate(l):
 | @属性名.setter | setter |
 | @属性名.deleter | deleter |
 
+### with文でclose漏れを防ぐ
+
+```python
+with open('ファイルパス','モード') as 変数名:
+    処理
+```
+
+途中で例外が発生しても、close処理が自動的に呼び出される
