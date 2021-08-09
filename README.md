@@ -17,7 +17,7 @@
  [https://www.atmarkit.co.jp/ait/articles/1904/05/news021.html#simplehelloworld]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/413]
+ [https://www.python.ambitious-engineer.com/archives/420]
 
 後回し
 リスト内包表記
