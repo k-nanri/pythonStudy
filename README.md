@@ -17,7 +17,7 @@
  [https://www.atmarkit.co.jp/ait/articles/1904/05/news021.html#simplehelloworld]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/420]
+ [https://www.python.ambitious-engineer.com/archives/950]
 
 後回し
 リスト内包表記
@@ -27,6 +27,9 @@
 基本的な特殊メソッドと_str_
 オブジェクト同士の演算
 変数の型を判定するその2type関数
+文字列の種別判定と数値変換
+文字列のフォーマット（値の埋め込み）
+
 
 
  ## メモ
@@ -109,3 +112,10 @@ with open('ファイルパス','モード') as 変数名:
 ```
 
 途中で例外が発生しても、close処理が自動的に呼び出される
+
+### パッケージ化
+
+モジュールが増えた場合はパッケージディレクトリで分けて管理したほうがよい。  
+その際は、__init__.pyでまとめて定義することで使用する側でimport文をたくさん書く必要がなくなる。
+
+[https://www.python.ambitious-engineer.com/archives/429]
