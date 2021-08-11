@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 if __name__ == '__main__':
 
@@ -36,3 +36,21 @@ if __name__ == '__main__':
     dt_obj2 = datetime(2018, 2, 2, 3, 4, 6, 000000)
     delta = dt_obj2 - dt_obj1
     print("delta = ", delta)
+
+    # dateオブジェクトの生成
+    d = date(2017, 1, 2)
+    print("d = ", d)
+
+    # 文字列からの変換はdatetimeを経由する
+    dt_str = '2017-04-01'
+    dt_obj = datetime.strptime(dt_str, "%Y-%m-%d")
+    d = dt_obj.date()
+    print("d = ", d)
+
+    # todayを使用する
+    today = date.today()
+    dt_obj_now = datetime.now()
+    today = dt_obj_now.date()
+    print("today = ", today)
+
+    
