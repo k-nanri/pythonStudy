@@ -17,7 +17,7 @@
  [https://www.atmarkit.co.jp/ait/articles/1904/05/news021.html#simplehelloworld]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/1798]
+ [https://www.python.ambitious-engineer.com/archives/657]
 
 後回し
 リスト内包表記
@@ -29,6 +29,7 @@
 変数の型を判定するその2type関数
 文字列の種別判定と数値変換
 文字列のフォーマット（値の埋め込み）
+正規表現
 
 
 
