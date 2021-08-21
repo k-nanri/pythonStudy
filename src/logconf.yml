@@ -1,0 +1,29 @@
+version: 1
+
+formatters:
+  fmt1:
+    format: '%(asctime)s %(name)s %(levelname)s %(message)s [fmt1]'
+
+handlers:
+  h1:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: fmt1
+    stream: ext://sys.stdout
+
+  h2:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: fmt1
+    filename: sample.log
+
+loggers:
+  sample:
+    handlers: [h2]
+    level: DEBUG
+    qualname: console
+    propagate: no
+
+root:
+  level: DEBUG
+  handlers: [h1]
