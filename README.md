@@ -16,8 +16,12 @@
 
  [https://www.atmarkit.co.jp/ait/articles/1904/05/news021.html#simplehelloworld]
 
+## 応用編
+
+[https://www.python.ambitious-engineer.com/application]
+
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/828]
+ [https://www.python.ambitious-engineer.com/archives/745]
 
 後回し
 リスト内包表記
@@ -120,3 +124,9 @@ with open('ファイルパス','モード') as 変数名:
 その際は、__init__.pyでまとめて定義することで使用する側でimport文をたくさん書く必要がなくなる。
 
 [https://www.python.ambitious-engineer.com/archives/429]
+
+### うまくテスト対象が認識されない
+
+手順通りに設定してみたが、うまくテストスイートが実行できなかった。
+unittest 単体テスト入門 その2 テストパッケージとテストスイート
+[https://www.python.ambitious-engineer.com/archives/841]
