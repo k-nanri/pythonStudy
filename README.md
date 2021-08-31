@@ -22,6 +22,7 @@
 
  次はここのページ
  [https://www.python.ambitious-engineer.com/archives/745]
+ SELECT文の実行
 
 後回し
 リスト内包表記
