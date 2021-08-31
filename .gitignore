@@ -130,3 +130,4 @@ dmypy.json
 sample2.txt
 output.csv
 
+*.db
