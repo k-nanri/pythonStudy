@@ -21,8 +21,8 @@
 [https://www.python.ambitious-engineer.com/application]
 
  次はここのページ
- [https://www.python.ambitious-engineer.com/archives/745]
- SELECT文の実行
+ [https://www.python.ambitious-engineer.com/archives/1185]
+ 
 
 後回し
 リスト内包表記
