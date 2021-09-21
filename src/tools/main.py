@@ -5,6 +5,9 @@ import os
 from os import path
 import pathlib
 import shutil
+import re
+import tarfile
+import time
 
 if __name__ == '__main__':
 
@@ -51,17 +54,23 @@ if __name__ == '__main__':
     # grepコマンドのようなものはない。
     # ファイルオープンしてreadlines()で１行ずつ実行する
     # reモジュールのsearchメソッドを使用する
+    with open("../src/tools/test.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            if re.search("bbb", line):
+                print("bbbがありました")
 
-    # 標準出力のgrep相当
-    # ファイルを1行ずつループ
-    
+            if re.search("^[a-z]+bc[a-z]+$", line):
+                print("正規表現に一致しました = ", line)
  
     # ファイルかどうか
-
-    # ディレクトリかどうか
+    if os.path.isfile("./test1.txt"):
+        print("./test1.txtはファイルだ")
 
     # 子階層のディレクトリを作成
-    
+    os.makedirs("test1/test2")
+
+    if os.path.isdir("test1"):
+        print("test1はディレクトリだ")
 
     # シェル実行
     print("Before")
@@ -73,13 +82,36 @@ if __name__ == '__main__':
     result = subprocess.check_call(["ls", "-lart"])
     
     # tarの操作は？
+    os.chdir("test1")
+    with tarfile.open("../../src/tools/hogehoge.tgz", "r:gz") as t:
+        t.extractall()
+        # hogeディレクトリ配下にtarファイルを展開
+        # t.extractall(path="hoge")
 
     # シェル実行失敗時の動き
     # check_outputは？
     # stdio=subprocess.PIPE ってしたらどうなる？
     # 対話形式のシェルはどうやればいい？
+    p = subprocess.Popen(["../../src/tools/check.sh"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
+    line = p.stdout.readline()
+    p.stdin.write(b"\n\n")
+    p.stdin.flush()
 
+    i = 0
+    isFinish = False
+    while i < 3:
+        if p.poll() is None:
+            print("まだ実行中")
+            i = i + 1
+            time.sleep(5)
+        else:
+            print("終了済")
+            isFinish = True
+            break
+
+    if not isFinish:
+        p.terminate()
 
 
 
