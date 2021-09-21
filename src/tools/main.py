@@ -8,6 +8,7 @@ import shutil
 import re
 import tarfile
 import time
+import traceback
 
 if __name__ == '__main__':
 
@@ -89,6 +90,13 @@ if __name__ == '__main__':
         # t.extractall(path="hoge")
 
     # シェル実行失敗時の動き
+    try:
+        subprocess.check_call(["../../src/tools/check2.sh"])
+    except Exception as e:
+        # stacktraceが出力できる
+        print(traceback.format_exc())
+
+
     # check_outputは？
     # stdio=subprocess.PIPE ってしたらどうなる？
     # 対話形式のシェルはどうやればいい？
