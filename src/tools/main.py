@@ -90,8 +90,20 @@ if __name__ == '__main__':
         # t.extractall(path="hoge")
 
     # シェル実行失敗時の動き
+    # シェル実行失敗時の動き
+    # https://dev.classmethod.jp/articles/python-subprocess-shell-command/
+    # textの代わりにuniversal_newlines
+    print("stdout=subprocess.STDOUTを指定")
+    p = None
     try:
-        subprocess.check_call(["../../src/tools/check2.sh"])
+        p = subprocess.check_call(["../../src/tools/check2.sh"], stdout=subprocess.STDOUT)
+    except Exception as e:
+        # stacktraceが出力できる
+        print(traceback.format_exc())
+    print("stdout=subprocess.PIPEを指定")
+
+    try:
+        subprocess.check_call(["../../src/tools/check2.sh"], stdout=subprocess.PIPE)
     except Exception as e:
         # stacktraceが出力できる
         print(traceback.format_exc())
