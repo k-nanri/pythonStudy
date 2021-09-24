@@ -133,5 +133,11 @@ if __name__ == '__main__':
     if not isFinish:
         p.terminate()
 
-
+    # tarファイル作成
+    tar_name = "hoge2.tgz"
+    print("current dir = ", os.getcwd())
+    archive = tarfile.open(tar_name, mode="w:gz")
+    archive.add("test2")
+    archive.add("hoge.txt")
+    archive.close()
 
