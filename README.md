@@ -2,14 +2,39 @@
 
 ## やること
 
+- スレッド
+  [https://docs.python.org/ja/3/library/threading.html]
+
+- キュー
+  [https://docs.python.org/ja/3/library/queue.html]
+  [https://docs.python.org/ja/3/library/queue.html]
+
+- PostgreSQLとの連携
+  [https://www.ashisuto.co.jp/db_blog/article/20160308_postgresql_with_python.html]
+  [https://www.utakata.work/entry/20190410/1554849000]
+
+- RESTful
+ - flask 
+   [https://qiita.com/Morinikiz/items/c2af4ffa180856d1bf30]
+   [https://qiita.com/zaburo/items/5091041a5afb2a7dffc8]
+
+ - django
+   [https://docs.djangoproject.com/ja/3.2/]
+   [https://qiita.com/kaki_k/items/511611cadac1d0c69c54]
+
+ - OpenPyXL
+   - セルからの値取得
+   - セルへの値の設定
+   - 表の作成
+   - グラフの作成
+   - vmstatとかの結果をグラフにする
+
+## やったこと
+
 - Pythonの基本構文など
 - ログ
-- スレッド
 - UnitTest
 - ソース分割
-- キュー
-- PostgreSQLとの連携
-- RESTful
 
 
 ## 入門
