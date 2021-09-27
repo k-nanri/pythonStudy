@@ -103,7 +103,7 @@ if __name__ == '__main__':
     print("stdout=subprocess.PIPEを指定")
 
     try:
-        subprocess.check_call(["../../src/tools/check2.sh"], stdout=subprocess.PIPE)
+        proc = subprocess.check_call(["../../src/tools/check2.sh"], stdout=subprocess.PIPE)
     except Exception as e:
         # stacktraceが出力できる
         print(traceback.format_exc())
@@ -112,6 +112,7 @@ if __name__ == '__main__':
     # check_outputは？
     # stdio=subprocess.PIPE ってしたらどうなる？
     # 対話形式のシェルはどうやればいい？
+    # https://qiita.com/caprest/items/0245a16825789b0263ad#パイプについて
     p = subprocess.Popen(["../../src/tools/check.sh"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
     line = p.stdout.readline()
@@ -141,3 +142,6 @@ if __name__ == '__main__':
     archive.add("hoge.txt")
     archive.close()
 
+    # PIPE
+    proce = subprocess.run(["echo", "hoge"], stdout = subprocess.PIPE)
+    print(proce.stdout.decode("utf8"))
