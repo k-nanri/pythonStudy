@@ -30,3 +30,4 @@ if __name__ == '__main__':
     print("main end")
 
     # ThreadPoolExecutorの実装
+    # Python3.2 から追加されたconcurrent.cuturesモジュールを使用する
