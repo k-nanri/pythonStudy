@@ -18,6 +18,8 @@
 
 import traceback
 import subprocess
+import os
+import shutil
 
 
 def print_message(message):
@@ -58,6 +60,11 @@ def print_complete():
 
     print_message("Complete Installer!!")
 
+def extract_tarfile():
+
+    # 展開用のディレクトリがあるかチェックし、あれば削除する
+    
+
 if __name__ == '__main__':
 
     # 1. 開始メッセージを出力
@@ -75,6 +82,7 @@ if __name__ == '__main__':
         print_extract_tarfile()
 
         # 5. tgzファイルを展開
+        extract_tarfile()
 
 
         # 6. ファイルの配置メッセージを出力
