@@ -20,6 +20,7 @@ import traceback
 import subprocess
 import os
 import shutil
+import tempfile
 
 
 def print_message(message):
@@ -62,7 +63,20 @@ def print_complete():
 
 def extract_tarfile():
 
+    current_dir = os.getcwd()
+    release_file = current_dir + "release_file.tgz"
+
     # 展開用のディレクトリがあるかチェックし、あれば削除する
+    with tempfile.TemporaryDirectory() as dname:
+
+        os.chdir(dname)
+        subprocess.check_call(["tar", "zxvf", release_file])
+
+        # 6. ファイルの配置メッセージを出力
+        print_start_copy()
+
+        # 7. 指定ディレクトリにファイルを配置
+
     
 
 if __name__ == '__main__':
@@ -83,13 +97,6 @@ if __name__ == '__main__':
 
         # 5. tgzファイルを展開
         extract_tarfile()
-
-
-        # 6. ファイルの配置メッセージを出力
-        print_start_copy()
-
-        # 7. 指定ディレクトリにファイルを配置
-
 
         # 8. ファイルの置換メッセージを出力
         print_replace_files()
