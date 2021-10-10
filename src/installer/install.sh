@@ -28,7 +28,7 @@ function error_message_and_exit() {
     exit 1
 }
 
-function install_pacakge() {
+function install_package() {
 
     local package_name="$1"
 
@@ -59,6 +59,25 @@ function extract_tarfile() {
     
 }
 
+function put_files() {
+    print_message "Start copy files"
+    cd "${PWD}/release_file"
+    local currnt_dir=$(pwd)
+    for target in $(find ${currnt_dir} -type f) ; done
+
+        src_file="${target/${currnt_dir}/"/opt/"}"
+        src_dir="$(dirname ${src_file})"
+
+        if [ -d "${src_dir}" ] ; then
+            mkdir -p "${src_dir}"
+        fi
+
+        cp "${target}" "${src_file}"
+
+    done
+
+}
+
 
 function main() {
 
@@ -73,8 +92,9 @@ function main() {
     # 5. tgzファイルを展開
     extract_tarfile
 
-
     # 6. ファイルの配置メッセージを出力
+    put_files
+
     # 7. 指定ディレクトリにファイルを配置
     # 8. ファイルの置換メッセージを出力
     # 9. ファイルを置換
