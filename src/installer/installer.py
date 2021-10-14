@@ -76,6 +76,7 @@ def extract_tarfile():
         print_start_copy()
 
         # 7. 指定ディレクトリにファイルを配置
+        
 
     
 
