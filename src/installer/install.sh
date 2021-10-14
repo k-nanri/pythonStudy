@@ -41,7 +41,7 @@ function install_package() {
 function install_packages() {
     print_message "Start Install Package"
     packages=("java" "wget")
-    for target in ${packages[@]} ; do
+    for target in "${packages[@]}" ; do
         install_package "${target}"
     done
 
@@ -59,16 +59,16 @@ function extract_tarfile() {
     
 }
 
-function put_files() {
+function copy_files() {
     print_message "Start copy files"
     cd "${PWD}/release_file"
     local currnt_dir=$(pwd)
-    for target in $(find ${currnt_dir} -type f) ; done
+    for target in $(find ${currnt_dir} -type f) ; do
 
-        src_file="${target/${currnt_dir}/"/opt/"}"
-        src_dir="$(dirname ${src_file})"
+        src_file="${target/${currnt_dir}//opt/install}"
+        src_dir="$(dirname "${src_file}")"
 
-        if [ -d "${src_dir}" ] ; then
+        if [ ! -d "${src_dir}" ] ; then
             mkdir -p "${src_dir}"
         fi
 
@@ -76,6 +76,16 @@ function put_files() {
 
     done
 
+}
+
+function replace_conf() {
+    print_message "Start replace config file."
+
+    local config_file="/opt/install/conf/test.conf"
+
+    if [ -f "${config_file}" ] ; then
+        sed -i "s/0.0.0.0/255.255.255.254/g" "${config_file}"
+    fi
 }
 
 
@@ -93,16 +103,16 @@ function main() {
     extract_tarfile
 
     # 6. ファイルの配置メッセージを出力
-    put_files
-
     # 7. 指定ディレクトリにファイルを配置
+    copy_files
+
     # 8. ファイルの置換メッセージを出力
     # 9. ファイルを置換
+    replace_conf
+
     # 10. 完了のメッセージを出力
+    print_message "Install Completed"
     
-
-
-
 }
 
 main
