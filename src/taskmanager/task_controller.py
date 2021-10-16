@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, abort
+from flask import Flask, request, abort, json, jsonify
 import peewee
 
 db = peewee.SqliteDatabase("src/taskmanager/data.db")
@@ -14,15 +14,11 @@ class Task(peewee.Model):
     class Meta:
         database = db
 
-@api.route("/task/<string:taskId>", methods=["GET"])
-def get_task(taskId):
-    try:
-        task = Task.get(Task.id == taskId)
-    except Task.DoesNotExist:
-        abort(404)
+@api.route("/task", methods=["POST"])
+def create_task():
+    task = request.get_json()
+    print(task)
 
-    response = {
-        "data": {
-            
-        }
-    }
+
+if __name__ == "__main__":
+    api.run(host="0.0.0.0", port=3000)
