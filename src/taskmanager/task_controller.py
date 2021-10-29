@@ -1,24 +1,16 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, abort, json, jsonify
-import peewee
+from flask import Flask, request
+from task_service import create_task2
 
-db = peewee.SqliteDatabase("src/taskmanager/data.db")
-api = Flask(__name__)
+app = Flask(__name__)
 
-class Task(peewee.Model):
-    id = peewee.IntegerField()
-    title = peewee.TextField()
-    created_at = peewee.TimeField()
-    updated_at = peewee.TimeField()
 
-    class Meta:
-        database = db
-
-@api.route("/task", methods=["POST"])
+@app.route("/task", methods=["POST"])
 def create_task():
     task = request.get_json()
-    print(task)
+    create_task2(task)
+    return "OK", 201
 
 
 if __name__ == "__main__":
-    api.run(host="0.0.0.0", port=3000)
+    app.run(host="0.0.0.0", port=3000)
