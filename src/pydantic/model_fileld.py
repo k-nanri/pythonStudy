@@ -8,8 +8,16 @@ class Yakiniku(BaseModel):
 
     @model_validator(mode="after")
     def check(self):
-        print(self.beaf)
-        print(self.source)
+        if self.beaf == "カルビ":
+            if self.source == "タレ" or self.source == "レモン":
+                return self
+            else:
+                raise ValueError("おかしな組み合わせ")
+        raise ValueError("カルビ以外嫌い")
 
 
 print(Yakiniku(beaf="カルビ", source="レモン"))
+print(Yakiniku(beaf="カルビ", source="タレ"))
+print(Yakiniku(beaf="カルビ", source="チョコ"))
+
+
