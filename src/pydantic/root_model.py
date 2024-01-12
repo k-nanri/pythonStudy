@@ -3,11 +3,14 @@ from typing import List
 
 class Product(BaseModel):
     id: int
-    name: str
-    cost: int
+    name: str = None
+    cost: int = 0
 
 class Products(RootModel):
     root: List[Product]
+
+    def __iter__(self):
+        return iter(self.root)
 
 class Store(BaseModel):
     products: Products
@@ -27,4 +30,5 @@ data = {
     ]
 }
 
-print(Store.model_validate(data))
+store = Store.model_validate(data)
+print(store)
