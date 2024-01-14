@@ -9,8 +9,8 @@ class Product(BaseModel):
     @field_validator("name")
     @classmethod
     def check(cls, v):
-        if v is None:
-            raise ValueError("E")
+        if v == "hoge":
+            raise ValueError("期待する値ではない")
         return v
 
 class Store(BaseModel):
@@ -25,7 +25,7 @@ data = {
         },
         {
             "id": 2,
-            "name": "beaf",
+            "name": "hoge",
             "cost": 500
         }
     ]
@@ -33,20 +33,3 @@ data = {
 
 store = Store.model_validate(data)
 print(store.model_dump())
-
-data = {
-    "products": [
-        {
-            "id": 1,
-            "cost": 100
-        },
-        {
-            "id": 2,
-            "name": None,
-            "name": "beaf",
-        }
-    ]
-}
-
-store = Store.model_validate(data)
-print(store)
