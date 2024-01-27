@@ -57,6 +57,16 @@ for product in products:
     print("Name = " + str(product.name))
 
 # 削除
+stmt = select(Product)
+products = session.scalars(stmt)
+session.delete(product)
+
+stmt = select(Product)
+products = session.scalars(stmt)
+for product in products:
+    print("Name = " + str(product.name))
+else:
+    print("No data")
 
 
 
