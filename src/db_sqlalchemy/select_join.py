@@ -16,6 +16,7 @@ class Student(Base):
     name: Mapped[str] = mapped_column(String(30))
     school_id: Mapped[int]
 
+
     def __str__(self):
         return "id = " + str(self.id) + ", name = " + str(self.name) + ", school_id = " + str(self.school_id)
 
@@ -23,6 +24,7 @@ class School(Base):
     __tablename__ = "school"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
+
 
 # DBエンジンを作成
 url = "postgresql://postgres:example@localhost:5432/postgres"
