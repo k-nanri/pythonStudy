@@ -32,7 +32,7 @@ class Address(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("user_account.id"))
     user: Mapped["User"] = relationship(back_populates="addresses")
     def __repr__(self) -> str:
-        return f"Address(id={self.id!r}, email_address={self.email_address!r})"
+        return f"Address(id={self.id!r}, email_address={self.email_address!r}, user=" + str(user) +")"
     
 # DBエンジンを作成
 url = "postgresql://postgres:example@localhost:5432/postgres"
@@ -78,7 +78,12 @@ stmt = (
     .where(User.name == "sandy")
     .where(Address.email_address == "sandy@sqlalchemy.org")
 )
+print(stmt)
 sandy_address = session.scalars(stmt)
 print("SELECT JOIN RESULT")
 for result in sandy_address:
     print(result)
+
+"""
+結合したデータはリレーションシップで定義した変数の中に設定される
+"""
