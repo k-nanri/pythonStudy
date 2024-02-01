@@ -46,7 +46,7 @@ session.add(student)
 session.commit()
 
 # relationshipの設定をしていない場合はこれで操作できる
-stmt = select(Student.id, Student.name, School.name).join(School, Student.school_id == School.id)
+stmt = select(Student.id, Student.name, School.name.label("aaa")).join(School, Student.school_id == School.id)
 print(stmt)
 #results = session.scalars(stmt)
 results = session.execute(stmt).mappings().all()
