@@ -1,12 +1,13 @@
 import click
 
 @click.command()
-@click.option('--username')
-@click.option("--job", envvar="JOB")
-def hello(username, job):
+@click.option('--password',
+              prompt="パスワードを入力してください",
+              hide_input=True,
+              confirmation_prompt=True)
+def hello(password):
 
-    click.echo("username = " + str(username))
-    click.echo("job      = " + str(job))
+    click.echo("入力したパスワード : " + str(password))
 
 if __name__ == "__main__":
-    hello(auto_envvar_prefix="HELLO")
+    hello()
