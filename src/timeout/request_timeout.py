@@ -6,17 +6,12 @@ import time
 import timeout_decorator
 import requests
 
-class NewError(Exception):
-    pass
-
-# 5秒後にタイムアウトする
-# timeout_excaptionでExceptionを指定できる
-@timeout_decorator.timeout(5)
-@timeout_decorator.timeout(5, timeout_exception=NewError)
+@timeout_decorator.timeout(10)
 def call_func():
-    print("Start call_func")
-    time.sleep(10)
-    print("End call_func")
+
+    print("Send Request!!")
+    response = requests.get("http://localhost:8000"params=None)
+    print("Receive Response!!")
 
 # RESTで長時間応答がないばいのために使用する
 

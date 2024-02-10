@@ -10,7 +10,7 @@ class NewError(Exception):
 
 # 5秒後にタイムアウトする
 # timeout_excaptionでExceptionを指定できる
-@timeout_decorator.timeout(5)
+#@timeout_decorator.timeout(5)
 @timeout_decorator.timeout(5, timeout_exception=NewError)
 def call_func():
     print("Start call_func")
