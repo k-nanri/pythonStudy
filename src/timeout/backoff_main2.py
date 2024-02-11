@@ -1,10 +1,16 @@
 import backoff
 import time
 
-@backoff.on_exception(backoff.runtime,
+def fatal_code(e):
+    return True
+
+@backoff.on_exception(backoff.constant,
                       Exception,
+                      raise_on_giveup=True,
+                      giveup=fatal_code,
                       jitter=None,
-                      max_time=60)
+                      interval=[1, 10, 15]
+                      )
 def handle():
     print("Start handle")
     time.sleep(2)
