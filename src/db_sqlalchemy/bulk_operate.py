@@ -4,7 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.types import String, Text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import insert
+from sqlalchemy import insert, update
 
 
 class Base(DeclarativeBase):
@@ -20,6 +20,8 @@ class Student(Base):
 
 url = "postgresql://postgres:example@localhost:5432/postgres"
 engine = create_engine(url, echo=True)
+# テーブルをDBに作成
+Base.metadata.create_all(engine)
 session_class = sessionmaker(engine)
 session = session_class()
 
@@ -51,7 +53,7 @@ session.commit()
 # スカラーって何？
 
 students = session.scalars(
-    insert(Student).returning(Student),
+    insert(Student).returning(Student, sort_by_parameter_order=True),
     [
         {"name": "sato", "address": "Tokyo", "email": "sato@ddd.com"},
         {"name": "tanaka", "address": "Kanagawa", "email": "tanaka@ddd.com"},
@@ -60,4 +62,17 @@ students = session.scalars(
 )
 session.commit()
 for student in students:
-    print(student.name)
+    print("id = " + str(student.id) + ", name = " + student.name)
+
+# TODO エラー
+students = session.scalars(
+    update(Student).returning(students),
+    [
+        {"id": 1, "name": "sato2"},
+        {"id": 2, "name": "tanaka2"},
+        {"id": 3, "name": "wata2"}
+    ]
+)
+session.commit()
+for student in students:
+    print("id = " + str(student.id) + ", name = " + student.name + ", email = " + student.email)
