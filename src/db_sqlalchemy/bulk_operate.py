@@ -4,7 +4,8 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.types import String, Text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import insert, update
+from sqlalchemy import insert, update, delete
+from sqlalchemy import bindparam
 
 
 class Base(DeclarativeBase):
@@ -64,15 +65,32 @@ session.commit()
 for student in students:
     print("id = " + str(student.id) + ", name = " + student.name)
 
-# TODO エラー
-students = session.scalars(
-    update(Student).returning(students),
+# 主キーを使ったWhere条件
+session.execute(
+    update(Student),
     [
         {"id": 1, "name": "sato2"},
         {"id": 2, "name": "tanaka2"},
         {"id": 3, "name": "wata2"}
     ]
 )
+
+session.connection().execute(
+    update(Student).where(Student.name == bindparam("u_name")),
+    [
+        {"u_name": "sato", "name": "sato3"},
+        {"u_name": "wata", "name": "wata3"}
+    ]
+)
 session.commit()
 for student in students:
     print("id = " + str(student.id) + ", name = " + student.name + ", email = " + student.email)
+
+session.execute(
+    delete(Student),
+    [
+        {"id": 1, "name": "sato2"},
+        {"id": 2, "name": "tanaka2"},
+        {"id": 3, "name": "wata2"}
+    ]
+)
