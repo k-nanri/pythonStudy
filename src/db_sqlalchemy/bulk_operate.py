@@ -71,7 +71,7 @@ session.execute(
     [
         {"id": 1, "name": "sato2"},
         {"id": 2, "name": "tanaka2"},
-        {"id": 3, "name": "wata2"}
+        {"id": 9, "name": "wata2"}
     ]
 )
 
@@ -87,10 +87,6 @@ for student in students:
     print("id = " + str(student.id) + ", name = " + student.name + ", email = " + student.email)
 
 session.execute(
-    delete(Student),
-    [
-        {"id": 1, "name": "sato2"},
-        {"id": 2, "name": "tanaka2"},
-        {"id": 3, "name": "wata2"}
-    ]
+    delete(Student).where(Student.name.in_(["wata3", "tanaka"]))
 )
+session.commit()
