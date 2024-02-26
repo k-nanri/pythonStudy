@@ -1,5 +1,32 @@
 import streamlit as st
 
+from sqlalchemy import create_engine
+from sqlalchemy.types import Integer, String, DateTime
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import select
+import datetime
+
+class Base(DeclarativeBase):
+    pass
+
+class Moviequestionnaire(Base):
+    __tablename__ = "movie_questionnaire"
+
+    time: Mapped[datetime.datetime] = mapped_column(DateTime, primary_key=True, nullable=False)
+    gender: Mapped[str] = mapped_column(String, nullable=False)
+    age: Mapped[int] = mapped_column(Integer, nullable=False)
+    frequency_show: Mapped[str] = mapped_column(String, nullable=False)
+    good_movie: Mapped[int] = mapped_column(Integer, nullable=False)
+
+# DBエンジンを作成
+url = "postgresql://postgres:example@localhost:5432/postgres"
+engine = create_engine(url, echo=True)
+# セッションの作成
+SessionClass = sessionmaker(engine)
+session = SessionClass()
+
 
 with st.form("my_form"):
     st.title("Let's try!!!")
@@ -11,5 +38,15 @@ with st.form("my_form"):
     submitted = st.form_submit_button("送信")
     if submitted:
         st.write("age", age, "good_movie", good_movie)
+
+st.subheader("Search DB")
+
+stmt = select(Moviequestionnaire)
+questionnaires = session.scalars(stmt)
+for item in questionnaires:
+    print(item.time)
+    print(item.gender)
+print("OK")
+
 
 
