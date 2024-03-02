@@ -55,5 +55,5 @@ def execute(name: str, age: int):
     print("execute start")
 
 if __name__ == '__main__':
-    #execute("tanaka", 20)
-    execute_tax("Kanagawa", 11111)
+    execute("tanaka", 20)
+    #execute_tax("Kanagawa", 11111)
