@@ -1,36 +1,19 @@
-from typing import final, override, overload
+class Person:
+
+    def __init__(self, age):
+        self.__age = age
+
+    @property
+    def age(self):
+        print("call getter")
+        return self.__age
+
+    @age.setter
+    def age(self, age):
+        print("call setter")
+        self.__age = age
 
 
-class Base:
-    @final
-    def done(self) -> None:
-        print("done from Base")
-
-    def call(self) -> None:
-        print("call!!")
-
-
-class Child(Base):
-    def done(self) -> None:
-        print("done from Child")
-
-    @override
-    def call(self) -> None:
-        print("Child call")
-
-
-@overload
-def say(name: str, address: str):
-    print("say name = " + name + ", address = " + address)
-
-
-def say(name: str):
-    print("say name = " + name)
-
-
-child = Child()
-child.done()
-child.call()
-
-say("sato")
-say("sato", "Tokyo")
+person = Person(5)
+person.age = 10
+print(person.age)
