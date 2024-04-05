@@ -22,9 +22,9 @@ def main():
 
     with grpc.insecure_channel("localhost:1234") as channel:
         stub = user_pb2_grpc.UserManagerStub(channel)
+        response = stub.get_server_stream(req)
 
-        for response in stub.get_server_stream(req):
-            pprint.pprint(response)
+    pprint.pprint(response)
 
 
 if __name__ == "__main__":
