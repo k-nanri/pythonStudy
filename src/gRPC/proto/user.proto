@@ -17,6 +17,13 @@ message User {
 // ユーザー情報のリクエストに使用するメッセージ型
 message UserRequest {
   uint32 id = 1;
+  enum UserType {
+    NORMAL = 0;
+    ADMINISTRATOR = 1;
+    GUEST = 2;
+    DISABLED = 3;
+  }
+  UserType user_type = 2;
 }
 
 // ユーザー情報を返す際に使用するメッセージ型
@@ -29,5 +36,6 @@ message UserResponse {
 // ユーザー管理を行うサービス
 service UserManager {
   // ユーザー情報を取得する
-  rpc get (UserRequest) returns (UserResponse) {}
+  rpc get (UserRequest) returns (UserResponse);
+  rpc get_server_stream (UserRequest) returns (stream UserResponse);
 }

@@ -29,6 +29,33 @@ class UserManager(user_pb2_grpc.UserManagerServicer):
 
         return user_pb2.UserResponse(error=False, user=result)
 
+    def get_server_stream(self, request, context):
+        print("リクエストを受信")
+        user_id_list = [u for u in users]
+        print("user_id_list", user_id_list)
+
+        for u_id in user_id_list:
+            user = users[u_id]
+
+            """
+            if user_pb2.User.UserType.Name(request.user_type) == user["user_type"]:
+                print(f"{user['id']}---該当あり---")
+                result = user_pb2.User(
+                    id=user["id"],
+                    nickname=user["nickname"],
+                    mail_address=user["mail_address"],
+                    user_type=user_pb2.User.UserType.Value(user["user_type"]),
+                )
+                yield user_pb2.UserResponse(error=False, user=result)
+            """
+            result = user_pb2.User(
+                id=user["id"],
+                nickname=user["nickname"],
+                mail_address=user["mail_address"],
+                user_type=user_pb2.User.UserType.Value(user["user_type"]),
+            )
+            yield user_pb2.UserResponse(error=False, user=result)
+
 
 def main():
 

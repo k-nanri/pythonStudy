@@ -1,4 +1,5 @@
-{ "1": { "id": 1,
+{ 
+  "1": { "id": 1,
          "nickname": "admin",
          "mail_address": "admin@example.com",
          "user_type": "ADMINISTRATOR" },

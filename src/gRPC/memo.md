@@ -60,6 +60,10 @@ https://zenn.dev/hsaki/books/golang-grpc-starting/viewer/stream
 
 # クライアントからサーバーが複数応答
 
+サンプルがあったので、こっちを確認。
+
+gRPCのサンプル`hellostreamingworld`が対象。
+
 
 # クライアントから複数送って、サーバは一個だけ返す
 
