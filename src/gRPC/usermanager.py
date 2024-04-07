@@ -4,6 +4,7 @@ import json
 import grpc
 import user_pb2
 import user_pb2_grpc
+from typing import Iterable
 
 with open("users.json") as fp:
     users = json.load(fp)
@@ -30,8 +31,17 @@ class UserManager(user_pb2_grpc.UserManagerServicer):
         return user_pb2.UserResponse(error=False, user=result)
 
     def get_client_stream(self, request_iter: Iterable[user_pb2.UserRequest], context):
-        
+        print("call get_client_stream!!")
+        user_cnt = 0
+        for request in request_iter:
+            user_id = request.id
+            if str(user_id) in users:
+                print("user count up")
+                user_cnt += 1
 
+        result = user_pb2.User()
+        result.id = user_cnt
+        return user_pb2.UserResponse(error=False, user=result)
 
     def get_server_stream(self, request, context):
         print("リクエストを受信")
