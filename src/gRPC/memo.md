@@ -60,9 +60,26 @@ https://zenn.dev/hsaki/books/golang-grpc-starting/viewer/stream
 
 # クライアントからサーバーが複数応答
 
-サンプルがあったので、こっちを確認。
+サーバー側は応答結果をyieldで返す必要がある。
+クライアント側は関数の戻り値をイテレーティブとして処理する。
+```python
+for response in stub.sayHello(
+    hellostreamingworld_pb2.HelloRequest(name="you")
+):
+    print("Greeter client received from async generator: " + response.message)
+```
 
-gRPCのサンプル`hellostreamingworld`が対象。
+非同期の場合は、read関数で待ち合わせして、取得結果がEOFでなければ処理する。
+
+```python
+hello_stream = stub.sayHello(hellostreamingworld_pb2.HelloRequest(name="you"))
+while True:
+    response = await hello_stream.read()
+    if response == grpc.aio.EOF:
+        break
+    print("Greeter client received from direct read: " + response.message)
+
+```
 
 
 # クライアントから複数送って、サーバは一個だけ返す

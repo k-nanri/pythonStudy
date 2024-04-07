@@ -29,6 +29,10 @@ class UserManager(user_pb2_grpc.UserManagerServicer):
 
         return user_pb2.UserResponse(error=False, user=result)
 
+    def get_client_stream(self, request_iter: Iterable[user_pb2.UserRequest], context):
+        
+
+
     def get_server_stream(self, request, context):
         print("リクエストを受信")
         user_id_list = [u for u in users]

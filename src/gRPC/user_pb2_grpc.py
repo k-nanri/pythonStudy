@@ -25,6 +25,11 @@ class UserManagerStub(object):
                 request_serializer=user__pb2.UserRequest.SerializeToString,
                 response_deserializer=user__pb2.UserResponse.FromString,
                 )
+        self.get_client_stream = channel.stream_unary(
+                '/UserManager/get_client_stream',
+                request_serializer=user__pb2.UserRequest.SerializeToString,
+                response_deserializer=user__pb2.UserResponse.FromString,
+                )
 
 
 class UserManagerServicer(object):
@@ -44,6 +49,12 @@ class UserManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def get_client_stream(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_UserManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -54,6 +65,11 @@ def add_UserManagerServicer_to_server(servicer, server):
             ),
             'get_server_stream': grpc.unary_stream_rpc_method_handler(
                     servicer.get_server_stream,
+                    request_deserializer=user__pb2.UserRequest.FromString,
+                    response_serializer=user__pb2.UserResponse.SerializeToString,
+            ),
+            'get_client_stream': grpc.stream_unary_rpc_method_handler(
+                    servicer.get_client_stream,
                     request_deserializer=user__pb2.UserRequest.FromString,
                     response_serializer=user__pb2.UserResponse.SerializeToString,
             ),
@@ -97,6 +113,23 @@ class UserManager(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/UserManager/get_server_stream',
+            user__pb2.UserRequest.SerializeToString,
+            user__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def get_client_stream(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/UserManager/get_client_stream',
             user__pb2.UserRequest.SerializeToString,
             user__pb2.UserResponse.FromString,
             options, channel_credentials,
