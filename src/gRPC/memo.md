@@ -58,7 +58,7 @@ gRPCのストリーミング通信には、3つのタイプがある。
 
 https://zenn.dev/hsaki/books/golang-grpc-starting/viewer/stream
 
-# クライアントからサーバーが複数応答
+## クライアントからサーバーが複数応答
 
 サーバー側は応答結果をyieldで返す必要がある。
 クライアント側は関数の戻り値をイテレーティブとして処理する。
@@ -82,13 +82,39 @@ while True:
 ```
 
 
-# クライアントから複数送って、サーバは一個だけ返す
+## クライアントから複数送って、サーバは一個だけ返す
 
 クライアントからリクエストを分割して送り、サーバー側は全てのリクエストを受けてレスポンスを返す。
 大きなデータを分割してアップロードしたい場合などに使える。
 
 https://sqripts.com/2023/03/02/36920/
 
+### サーバー側の実装
+
+サーバー側は関数のパラメータにIterableのデータを持つ。
+このIterableに複数のリクエストが入っている
+
+```python
+def get_client_stream(self, request_iter: Iterable[user_pb2.UserRequest], context):
+```
+
+Iterable型のパラメータがクライアントからのリクエストになる。このパラメータをループでリクエストを
+処理して、最後にクライアントに返す実装になる。
+
+```python
+for request in request_iter:
+    user_id = request.id
+    if str(user_id) in users:
+        print("user count up")
+        user_cnt += 1
+
+result = user_pb2.User()
+result.id = user_cnt
+return user_pb2.UserResponse(error=False, user=result)
+```
+
 ## 参考
+
+yieldの使い方
 
 https://knowledge.sakura.ad.jp/24059/

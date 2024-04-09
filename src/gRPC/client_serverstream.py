@@ -1,6 +1,6 @@
 import pprint
 import sys
-
+import time
 import grpc
 import user_pb2
 import user_pb2_grpc
@@ -31,12 +31,21 @@ def server_streaming():
     pprint.pprint(response)
 
 
+def create_data():
+    for user_id in [1, 2, 3]:
+        time.sleep(3)
+        print("user_id = " + str(user_id))
+        req = user_pb2.UserRequest(id=user_id)
+        yield req
+
+
 def client_streaming():
     print("call client streaming!!")
-    req_list = []
+    # req_list = []
     with grpc.insecure_channel("localhost:1234") as channel:
-        for user_id in [1, 2, 3]:
-            req = user_pb2.UserRequest(id=user_id)
+        stub = user_pb2_grpc.UserManagerStub(channel)
+        response = stub.get_client_stream(create_data())
+        pprint.pprint(response)
 
     #    stub = user_pb2_grpc.UserManagerStub(channel)
     #    response = stub.get_client_stream(iter(req_list))
@@ -45,4 +54,5 @@ def client_streaming():
 
 if __name__ == "__main__":
     # server_streaming()
+    print("Start!!")
     client_streaming()

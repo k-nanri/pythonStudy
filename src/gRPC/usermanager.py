@@ -5,6 +5,7 @@ import grpc
 import user_pb2
 import user_pb2_grpc
 from typing import Iterable
+import time
 
 with open("users.json") as fp:
     users = json.load(fp)
@@ -38,6 +39,7 @@ class UserManager(user_pb2_grpc.UserManagerServicer):
             if str(user_id) in users:
                 print("user count up")
                 user_cnt += 1
+                time.sleep(10)
 
         result = user_pb2.User()
         result.id = user_cnt
@@ -76,6 +78,7 @@ def main():
     server = grpc.server(ThreadPoolExecutor(max_workers=2))
     user_pb2_grpc.add_UserManagerServicer_to_server(UserManager(), server)
     server.add_insecure_port("[::]:1234")
+    print("Start Server!!!")
     server.start()
     server.wait_for_termination()
 
