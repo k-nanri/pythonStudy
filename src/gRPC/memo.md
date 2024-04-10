@@ -98,8 +98,7 @@ https://sqripts.com/2023/03/02/36920/
 def get_client_stream(self, request_iter: Iterable[user_pb2.UserRequest], context):
 ```
 
-Iterable型のパラメータがクライアントからのリクエストになる。このパラメータをループでリクエストを
-処理して、最後にクライアントに返す実装になる。
+Iterable型のパラメータがクライアントからのリクエストになる。このパラメータをループでリクエストを処理して、最後にクライアントに返す実装になる。
 
 ```python
 for request in request_iter:
@@ -112,6 +111,34 @@ result = user_pb2.User()
 result.id = user_cnt
 return user_pb2.UserResponse(error=False, user=result)
 ```
+
+### クライアント側の実装
+
+クライアント側は、サーバ側に渡すデータ用の関数を作成してyieldで1つずつサーバ側に
+渡す。
+
+```python
+def create_data():
+    for user_id in [1, 2, 3]:
+        print("user_id = " + str(user_id))
+        req = user_pb2.UserRequest(id=user_id)
+        yield req
+
+
+def client_streaming():
+    print("call client streaming!!")
+    with grpc.insecure_channel("localhost:1234") as channel:
+        stub = user_pb2_grpc.UserManagerStub(channel)
+        response = stub.get_client_stream(create_data())
+        pprint.pprint(response)
+```
+
+## 双方向での通信
+
+サーバー／クライアントが任意のタイミングでリクエストやレスポンスを送る送ることができる。
+チャットのやり取りをイメージしてもらえるといいかと思う。
+
+
 
 ## 参考
 

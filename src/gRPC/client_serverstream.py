@@ -33,7 +33,7 @@ def server_streaming():
 
 def create_data():
     for user_id in [1, 2, 3]:
-        time.sleep(3)
+        time.sleep(10)
         print("user_id = " + str(user_id))
         req = user_pb2.UserRequest(id=user_id)
         yield req

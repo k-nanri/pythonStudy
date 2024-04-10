@@ -33,10 +33,16 @@ message UserResponse {
   User user = 3;
 }
 
+message ChatMessage {
+   string name = 1;
+   string message = 2;
+}
+
 // ユーザー管理を行うサービス
 service UserManager {
   // ユーザー情報を取得する
   rpc get (UserRequest) returns (UserResponse);
   rpc get_server_stream (UserRequest) returns (stream UserResponse);
   rpc get_client_stream (stream UserRequest) returns (UserResponse);
+  rpc connect_chat (stream ChatMessage) returns (stream ChatMessage);
 }

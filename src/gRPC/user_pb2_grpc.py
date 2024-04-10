@@ -30,6 +30,11 @@ class UserManagerStub(object):
                 request_serializer=user__pb2.UserRequest.SerializeToString,
                 response_deserializer=user__pb2.UserResponse.FromString,
                 )
+        self.connect_chat = channel.stream_stream(
+                '/UserManager/connect_chat',
+                request_serializer=user__pb2.ChatMessage.SerializeToString,
+                response_deserializer=user__pb2.ChatMessage.FromString,
+                )
 
 
 class UserManagerServicer(object):
@@ -55,6 +60,12 @@ class UserManagerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def connect_chat(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_UserManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -72,6 +83,11 @@ def add_UserManagerServicer_to_server(servicer, server):
                     servicer.get_client_stream,
                     request_deserializer=user__pb2.UserRequest.FromString,
                     response_serializer=user__pb2.UserResponse.SerializeToString,
+            ),
+            'connect_chat': grpc.stream_stream_rpc_method_handler(
+                    servicer.connect_chat,
+                    request_deserializer=user__pb2.ChatMessage.FromString,
+                    response_serializer=user__pb2.ChatMessage.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -132,5 +148,22 @@ class UserManager(object):
         return grpc.experimental.stream_unary(request_iterator, target, '/UserManager/get_client_stream',
             user__pb2.UserRequest.SerializeToString,
             user__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def connect_chat(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/UserManager/connect_chat',
+            user__pb2.ChatMessage.SerializeToString,
+            user__pb2.ChatMessage.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
