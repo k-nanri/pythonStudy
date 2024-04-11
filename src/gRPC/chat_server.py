@@ -72,6 +72,26 @@ class UserManager(user_pb2_grpc.UserManagerServicer):
             )
             yield user_pb2.UserResponse(error=False, user=result)
 
+    def connect_chat(self, request_itr: Iterable[user_pb2.ChatMessage], context):
+        print("connect client")
+        for message in request_itr:
+            print(
+                "Receive new message!! [id: {}, msg: {}]".format(
+                    message.id, message.message
+                )
+            )
+
+            reply_messages = []
+            reply_messages.append(
+                user_pb2.ChatMessage(id=message.id, message="Thank!!!")
+            )
+            reply_messages.append(
+                user_pb2.ChatMessage(id=message.id, message="good day!!!")
+            )
+
+            for message in reply_messages:
+                yield message
+
 
 def main():
 
