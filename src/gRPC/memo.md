@@ -21,18 +21,6 @@ pip install grpcio
 pip install grpcio-tools
 ```
 
-## フォルダ構成
-
-作業前フォルダ構成
-
-```shell
-.
-|-- proto
-|     +- user.proto
-|-- users.json
-
-```
-
 ## プロトコル定義ファイルからコードを生成
 
 protocモジュールを使って、プロトコル定義からソースを生成
@@ -44,8 +32,8 @@ python -m grpc_tools.protoc -I./proto --python_out=. --grpc_python_out=. ./proto
 ## サーバー/クライアントの実装
 
 サーバー側では、<サービス名>Servicerというクラスを継承したクラスを実装する。
-継承するクラスは、user_bp2_grp.pyで実装されている。
-あとは、サイト通りに実装すればよい。
+継承するクラス、`grpc_tools.protoc`コマンドで生成したソースコードで実装されている。
+ここでは、user_bp2_grp.pyがそれにあたる。
 
 ## ストリーミング
 
@@ -58,7 +46,7 @@ gRPCのストリーミング通信には、3つのタイプがある。
 
 https://zenn.dev/hsaki/books/golang-grpc-starting/viewer/stream
 
-## クライアントからサーバーが複数応答
+## クライアントからサーバーが複数応答（単方向サーバーストリーミング）
 
 サーバー側は応答結果をyieldで返す必要がある。
 クライアント側は関数の戻り値をイテレーティブとして処理する。
@@ -82,7 +70,7 @@ while True:
 ```
 
 
-## クライアントから複数送って、サーバは一個だけ返す
+## クライアントから複数送って、サーバは一個だけ返す（単方向クライアントストリーミング）
 
 クライアントからリクエストを分割して送り、サーバー側は全てのリクエストを受けてレスポンスを返す。
 大きなデータを分割してアップロードしたい場合などに使える。
@@ -133,11 +121,67 @@ def client_streaming():
         pprint.pprint(response)
 ```
 
-## 双方向での通信
+## 双方向での通信（双方向ストリーミング）
 
 サーバー／クライアントが任意のタイミングでリクエストやレスポンスを送る送ることができる。
 チャットのやり取りをイメージしてもらえるといいかと思う。
 
+### サーバー側の実装
+
+クライアント側のリクエストは、Iterable型なので、for文でリクエストを処理する。
+サーバー側の複数の応答は、yieldを使って１つずつ返している。
+
+```python
+for message in request_itr:
+    print(
+        "Receive new message!! [id: {}, msg: {}]".format(
+            message.id, message.message
+        )
+    )
+
+    reply_messages = []
+    reply_messages.append(
+        user_pb2.ChatMessage(id=message.id, message="Thank!!!")
+    )
+    reply_messages.append(
+        user_pb2.ChatMessage(id=message.id, message="good day!!!")
+    )
+
+    for message in reply_messages:
+        yield message
+```
+
+### クライアント側の実装
+
+サーバー側の関数をコールして、戻り値はIterable側なのでfor文でレスポンスを処理する。
+
+
+```python
+def send_message(stub, msg, id):
+    messages = []
+    messages.append(user_pb2.ChatMessage(id=id, message=msg))
+    responses = stub.connect_chat(iter(messages))
+    for res in responses:
+        print("Received message [id={}, msg={}]".format(res.id, res.message))
+
+
+def client_streaming():
+    id = 1
+    with grpc.insecure_channel("localhost:1234") as channel:
+        stub = user_pb2_grpc.UserManagerStub(channel)
+        print("--- Input your message -------")
+        while True:
+            msg = input("Input message >")
+            send_message(stub, msg, id)
+            id += 1
+```
+
+##　最後に
+
+簡単なハローワールドレベルでgRPCを使ってみた。
+メッセージの型も明確に定義して利用しなければならないため、設計時に通信相手との意識合わせが必須。RESTに関しても同様だが、gRPCの方が厳格だ。
+より高速な処理が求めまれるときはgRPCの方が良さそう。
+監視系に関しても次世代ネットワークの監視は、gRPCとかを使うことになるように感じているので、kafkaもちゃんと理解しないといけないなと感じた。
 
 
 ## 参考

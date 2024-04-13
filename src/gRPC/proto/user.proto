@@ -34,7 +34,7 @@ message UserResponse {
 }
 
 message ChatMessage {
-   string name = 1;
+   uint32 id = 1;
    string message = 2;
 }
 
