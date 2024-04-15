@@ -183,6 +183,7 @@ def client_streaming():
 より高速な処理が求めまれるときはgRPCの方が良さそう。
 監視系に関しても次世代ネットワークの監視は、gRPCとかを使うことになるように感じているので、kafkaもちゃんと理解しないといけないなと感じた。
 
+https://engineers.ntt.com/entry/2021/09/02/162022https://engineers.ntt.com/entry/2021/09/02/162022
 
 ## 参考
 
