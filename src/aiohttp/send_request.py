@@ -4,15 +4,20 @@ import asyncio
 # 非同期にリクエストを送信したい。
 
 
-async def main():
+async def send(name):
+    print("--- " + name + " -----")
     async with aiohttp.ClientSession() as session:
-        for i in range(0, 5):
-            print("Send!!")
-            resp = session.get("http://127.0.0.1:8001")
-            # print(resp.status)
-            # print(await resp.text())
+        print("--- " + name + " Send!!")
+        resp = await session.get("http://127.0.0.1:8001")
+        print("--- " + name + " status = " + str(resp.status))
+        print("--- " + name + str(await resp.text()))
 
-        await resp.text()
+
+async def main():
+    task1 = asyncio.create_task(send("task1"))
+    task2 = asyncio.create_task(send("task2"))
+    await task1
+    await task2
 
 
 asyncio.run(main())

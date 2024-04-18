@@ -12,4 +12,4 @@ def call_api():
 
 
 # 下記で起動
-# uvicorn app:app
+# uvicorn late_app:app --port 8000
