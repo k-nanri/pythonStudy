@@ -11,8 +11,6 @@ handler_format = Formatter("%(asctime)s - %(message)s")
 stream_handler.setFormatter(handler_format)
 logger.addHandler(stream_handler)
 
-# 非同期にリクエストを送信したい。
-
 
 async def send(name):
     logger.info("--- " + name + " -----")
