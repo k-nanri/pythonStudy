@@ -20,7 +20,7 @@ channel = connection.channel()
 
 channel.exchange_declare(exchange="topic_logs", exchange_type="topic")
 
-binding_keys = ["syslog.debug"]
+binding_keys = ["syslog.*"]
 
 for binding_key in binding_keys:
     result = channel.queue_declare("", exclusive=True)

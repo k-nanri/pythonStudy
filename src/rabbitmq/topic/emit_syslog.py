@@ -5,7 +5,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost")
 channel = connection.channel()
 channel.exchange_declare(exchange="topic_logs", exchange_type="topic")
 
-routing_keys = ["syslog.debug", "syslog.debug.aaa"]
+routing_keys = ["syslog.debug", "syslog2.debug"]
 
 for routing_key in routing_keys:
     message = "topic=" + str(routing_key) + " message!!"
