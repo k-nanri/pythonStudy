@@ -1,3 +1,4 @@
+from __future__ import annotations
 import asyncio
 import datetime
 from typing import List
@@ -32,7 +33,7 @@ class A(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     data: Mapped[str]
-    create_date: Mapped[datetime.datetime] = mapped_column(server_daefault=func.now())
+    create_date: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
     bs: Mapped[List[B]] = relationship()
 
 
@@ -41,9 +42,21 @@ async def insert_objects(async_session: async_sessionmaker[AsyncSession]) -> Non
         async with session.begin():
             session.add_all(
                 [
-                    A(bs=[B(data="b1"), B(data="b2")], data="a1"),
-                    A(bs=[], data="as"),
-                    A(bs=[B(data="b3"), B(data="b4")], data="a3"),
+                    A(
+                        bs=[B(data="b1"), B(data="b2")],
+                        data="a1",
+                        create_date=datetime.datetime.now(),
+                    ),
+                    A(
+                        bs=[],
+                        data="as",
+                        create_date=datetime.datetime.now(),
+                    ),
+                    A(
+                        bs=[B(data="b3"), B(data="b4")],
+                        data="a3",
+                        create_date=datetime.datetime.now(),
+                    ),
                 ]
             )
 
