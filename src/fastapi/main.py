@@ -12,13 +12,15 @@ logger.setLevel("INFO")
 class Product(BaseModel):
     id: int = Field(...)
     name: str = Field(...)
-    cost : PositiveInt = 0
+    cost: PositiveInt = 0
+
 
 class Products(RootModel):
     root: List[Product]
 
 
 app = FastAPI()
+
 
 @app.get("/")
 def hello():
@@ -28,10 +30,10 @@ def hello():
 
     return products
 
+
 @app.exception_handler(ValidationError)
 async def handle_validation_error(request: Request, exc: ValidationError):
     logger.info("Call Exception Handler!!")
     return JSONResponse(
-        status_code=400,
-        content={"message": "ValidationErrorが発生したよ"}
+        status_code=400, content={"message": "ValidationErrorが発生したよ"}
     )
