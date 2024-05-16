@@ -17,11 +17,12 @@ def execute_long_time(mode: str, message=""):
     logger.info("--- END execute_log_time")
 
 
+"""
 @app.post("/send-notification/{mode}")
 async def send_notification(mode: str, background_tasks: BackgroundTasks):
     background_tasks.add_task(execute_long_time, mode, message="notification")
     return {"message": "Notification sent in the background"}
-
+"""
 
 # 起動
 # uvicorn backgroundtask:app --reload
