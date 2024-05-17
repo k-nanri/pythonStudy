@@ -37,11 +37,12 @@ async def collect_status(request_id, query: Union[str, None] = None):
     return response
 
 
-async def execute_long_time(mode: str, request_id: str):
+def execute_long_time(mode: str, request_id: str):
     logger.info("Start execute_long_time method")
     logger.info("execute_log_time param mode=" + mode + ", request_id=" + request_id)
     collecting_status.append({"request_id": request_id, "status": "collecting"})
-    await asyncio.sleep(60)
+    # await asyncio.sleep(60)
+    time.sleep(60)
 
     if {"request_id": request_id, "status": "collecting"} in collecting_status:
         collecting_status.remove({"request_id": request_id, "status": "collecting"})
