@@ -23,10 +23,11 @@ class CollectStatusResponse(BaseModel):
 @app.post("/collectlog")
 async def collectlog(request: CollectRequest):
     logger.info("Start collectlog method")
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(
+        connector=aiohttp.TCPConnector(force_close=True)
+    ) as session:
         url = "http://localhost:8000/collectlog"
-        request_json = request.model_dump_json()
-        response = await session.post(url, json={"mode": "all"})
+        response = await session.post(url, json=request.model_dump())
         if response.status != 200:
             logger.error("Failed to response = " + str(response.json()))
             return {"message": "Failed to error."}
@@ -52,8 +53,11 @@ async def collectlog(request: CollectRequest):
                 await asyncio.sleep(5)
                 cnt += 1
 
-            if cnt == 10:
+            if cnt == 30:
                 raise Exception("Failed to collect")
 
     logger.info("End collectlog method")
     return {"status": "finish"}
+
+
+# uvicorn send_request_to_backg:app --port 8001 --reload
