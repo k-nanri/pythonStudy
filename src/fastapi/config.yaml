@@ -1,0 +1,7 @@
+errorlist:
+  - status: 200
+    message: "Success"
+  - status: 400
+    message: "Error!!!"
+  - status: 500
+    message: "ServerError!!!"
