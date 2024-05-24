@@ -1,4 +1,4 @@
-errorlist:
+errormessages:
   - status: 200
     message: "Success"
   - status: 400

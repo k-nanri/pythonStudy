@@ -14,41 +14,36 @@ async def lifespan(app: FastAPI):
     logger.info("Start up!!!")
     with open("config.yaml", "r") as yml:
         config = yaml.safe_load(yml)
-        for item in config["errorlist"]:
+        for item in config["errormessages"]:
             messages.append(item)
 
-    logger.info(messages[0]["status"])
+    logger.info("messages = " + str(messages))
     yield
+
     logger.info("Shutdown!!!")
 
 
 app = FastAPI(lifespan=lifespan)
 
 
-@app.get("/hoge")
+@app.get("/message")
 async def get_data():
     global cnt
-    logger.info(messages)
+    logger.info("cnt = " + str(cnt))
     if cnt == 0:
+        idx = cnt
         cnt += 1
-        return JSONResponse(
-            status_code=messages[0]["status"],
-            content={"result": messages[0]["message"]},
-        )
-
-    if cnt == 1:
+    elif cnt == 1:
+        idx = cnt
         cnt += 1
-        return JSONResponse(
-            status_code=messages[1]["status"],
-            content={"result": messages[1]["message"]},
-        )
-
-    if cnt == 2:
+    elif cnt == 2:
+        idx = cnt
         cnt = 0
-        return JSONResponse(
-            status_code=messages[2]["status"],
-            content={"result": messages[2]["message"]},
-        )
+
+    return JSONResponse(
+        status_code=messages[idx]["status"],
+        content={"result": messages[idx]["message"]},
+    )
 
 
 # uvicorn on_event:app --port 8001 --reload
