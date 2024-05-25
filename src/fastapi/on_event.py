@@ -40,10 +40,15 @@ async def get_data():
         idx = cnt
         cnt = 0
 
-    return JSONResponse(
+    response = JSONResponse(
         status_code=messages[idx]["status"],
         content={"result": messages[idx]["message"]},
     )
+
+    logger.info(
+        "statuscode = {}, body = {}".format(response.status_code, response.body)
+    )
+    return response
 
 
 # uvicorn on_event:app --port 8001 --reload
