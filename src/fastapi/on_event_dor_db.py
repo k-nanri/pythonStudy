@@ -1,9 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from logging import getLogger
 from contextlib import asynccontextmanager
-from sqlalchemy.ext.asyncio import create_async_engine
-
 from fastapi.responses import JSONResponse
+from db import database
+from db.repository import TodoRepository, create_todo_repository
 
 logger = getLogger("uvicorn.app")
 
@@ -11,20 +11,24 @@ logger = getLogger("uvicorn.app")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Start up!!!")
-    url = "postgresql+asyncpg://postgres:example@localhost:5432/postgres"
-    engine = create_async_engine(url, echo=True)
+    await database.connect()
 
     yield
-
+    database.disconnect()
     logger.info("Shutdown!!!")
-    engine.dispose()
 
 
 app = FastAPI(lifespan=lifespan)
 
 
+@app.post("/data")
+async def create_data(repository: TodoRepository = Depends(create_todo_repository)):
+    await repository.insert_data()
+    await repository.insert_data()
+
+
 @app.get("/message")
-async def get_data():
+async def get_data(repository: TodoRepository = Depends(create_todo_repository)):
     global cnt
     logger.info("cnt = " + str(cnt))
     if cnt == 0:
