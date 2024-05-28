@@ -24,32 +24,9 @@ app = FastAPI(lifespan=lifespan)
 @app.post("/data")
 async def create_data(repository: TodoRepository = Depends(create_todo_repository)):
     await repository.insert_data()
-    await repository.insert_data()
 
-
-@app.get("/message")
+@app.get("/data")
 async def get_data(repository: TodoRepository = Depends(create_todo_repository)):
-    global cnt
-    logger.info("cnt = " + str(cnt))
-    if cnt == 0:
-        idx = cnt
-        cnt += 1
-    elif cnt == 1:
-        idx = cnt
-        cnt += 1
-    elif cnt == 2:
-        idx = cnt
-        cnt = 0
-
-    response = JSONResponse(
-        status_code=messages[idx]["status"],
-        content={"result": messages[idx]["message"]},
-    )
-
-    logger.info(
-        "statuscode = {}, body = {}".format(response.status_code, response.body)
-    )
-    return response
 
 
 # uvicorn on_event:app --port 8001 --reload

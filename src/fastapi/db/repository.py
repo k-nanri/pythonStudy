@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import async_sessionmaker
-from todo import TodoData, Todo
-import database
+from db.todo import TodoData, Todo
+from db import database
 
 
 class TodoRepository:
@@ -12,11 +12,11 @@ class TodoRepository:
     async def insert_data(self):
         async with self.session() as session:
             async with session.begin():
-                session.add_all([Todo(1, "test")])
+                session.add_all([Todo(content="test")])
 
         async with self.session() as session:
             async with session.begin():
-                session.add_all([Todo(2, "hoge")])
+                session.add_all([Todo(content="hoge")])
 
 
 def create_todo_repository() -> TodoRepository:

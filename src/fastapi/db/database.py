@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import create_async_engine
-from todo import Base
+from db.todo import Base
 
 URL = "postgresql+asyncpg://postgres:example@localhost:5432/postgres"
 engine = None

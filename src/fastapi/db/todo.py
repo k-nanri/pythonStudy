@@ -12,7 +12,7 @@ class Base(AsyncAttrs, DeclarativeBase):
 class Todo(Base):
     __tablename__ = "todo"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     content: Mapped[str]
 
 
