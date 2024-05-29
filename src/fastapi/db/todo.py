@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
-from pydantic import BaseModel
+from pydantic import BaseModel, RootModel, ConfigDict
 
 
 class Base(AsyncAttrs, DeclarativeBase):
@@ -17,5 +17,16 @@ class Todo(Base):
 
 
 class TodoData(BaseModel):
-    id: str
+    id: int
     content: str
+
+    class Config:
+        from_attributes = True
+
+
+class TodoData(RootModel):
+
+    root: list[TodoData]
+
+    class Config:
+        from_attributes = True
