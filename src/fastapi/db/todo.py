@@ -9,6 +9,20 @@ class Base(AsyncAttrs, DeclarativeBase):
     pass
 
 
+class TodoRequestContent(BaseModel):
+    content: str
+
+    class Config:
+        orm_mode = True
+
+
+class TodoRequest(RootModel):
+    root: list[TodoRequestContent]
+
+    class Config:
+        orm_mode = True
+
+
 class Todo(Base):
     __tablename__ = "todo"
 

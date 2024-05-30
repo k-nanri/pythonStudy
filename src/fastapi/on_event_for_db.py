@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi.responses import JSONResponse
 from db import database
 from db.repository import TodoRepository, create_todo_repository
-from db.todo import TodoData
+from db.todo import TodoData, TodoRequest
 
 logger = getLogger("uvicorn.app")
 
@@ -23,8 +23,10 @@ app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/data")
-async def create_data(repository: TodoRepository = Depends(create_todo_repository)):
-    await repository.insert_data()
+async def create_data(
+    request: TodoRequest, repository: TodoRepository = Depends(create_todo_repository)
+):
+    await repository.insert_data(request)
 
 
 @app.get("/data")
