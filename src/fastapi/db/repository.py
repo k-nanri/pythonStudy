@@ -18,8 +18,7 @@ class TodoRepository:
             async with session.begin():
                 insert_data = []
                 for item in request.root:
-                    logger.info(item.model_dump_json())
-                    insert_data.append(Todo(item.model_dump_json()))
+                    insert_data.append(Todo(content=item.content))
 
                 logger.info(insert_data)
                 session.add_all(insert_data)

@@ -3,6 +3,7 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from pydantic import BaseModel, RootModel, ConfigDict
+from typing import Optional
 
 
 class Base(AsyncAttrs, DeclarativeBase):
@@ -13,14 +14,14 @@ class TodoRequestContent(BaseModel):
     content: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class TodoRequest(RootModel):
     root: list[TodoRequestContent]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class Todo(Base):
@@ -31,7 +32,7 @@ class Todo(Base):
 
 
 class TodoData(BaseModel):
-    id: int
+    id: Optional[int]
     content: str
 
     class Config:
