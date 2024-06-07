@@ -8,6 +8,9 @@ services:
       POSTGRES_PASSWORD: example
     ports:
       - 5432:5432
+    volumes:
+      - ./db1/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./db1/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
 
   db2:
     image: postgres
