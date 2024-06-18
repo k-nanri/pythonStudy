@@ -1,21 +1,28 @@
-from fastapi import FastAPI, WebSocket
+import asyncio
+import uuid
 from logging import getLogger
 
 logger = getLogger("uvicorn.app")
 
+from fastapi import (
+    Depends,
+    FastAPI,
+    WebSocket,
+    WebSocketException,
+)
+
 app = FastAPI()
 
 
-@app.websocket("/data")
-async def websocket_data(websocket: WebSocket):
-    logger.info("Begin to accept")
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    logger.info("complite to accept")
-    try:
+    while True:
+        data = await websocket.receive_text()
         while True:
-            response = await websocket.receive_text()
-            logger.info(f"receive {response}")
-            await websocket.send_text(f"Message text was {response}")
-            logger.info("send message")
-    except WebSocketDisconnect:
-        
+            id = str(uuid.uuid1())
+            severity = "info"
+            message = "Restart Server"
+            event = {"id": id, "severity": severity, "message": message}
+            await websocket.send_json(event)
+            await asyncio.sleep(10)
