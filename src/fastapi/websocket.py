@@ -21,6 +21,7 @@ async def websocket_endpoint(websocket: WebSocket):
         data = await websocket.receive_text()
         while True:
             id = str(uuid.uuid1())
+            logger.info(f"id = {id}")
             severity = "info"
             message = "Restart Server"
             event = {"id": id, "severity": severity, "message": message}

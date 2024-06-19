@@ -11,7 +11,7 @@ function App() {
   //Public API that will echo messages sent to it back to the client
   const [socketUrl, setSocketUrl] = useState(WS_URL);
   const [messageHistory, setMessageHistory] = useState([]);
-  const apiRef = useGridApiRef();
+  const [rows, setRows] = useState([]);
 
   const { sendMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl);
 
@@ -20,16 +20,19 @@ function App() {
     if (lastJsonMessage !== null) {
       setMessageHistory((prev) => {
         for (let i = 0; i < prev.length; i++) {
-          if (prev[i].message === lastJsonMessage.message) {
+          if (prev[i].id === lastJsonMessage.id) {
             return prev;
           }
         }
-        prev.push(lastJsonMessage)
-        set
+        prev.push(lastJsonMessage);
         return prev;
       })
     }
   }, [lastJsonMessage]);
+
+  useEffect(() => {
+    setRows([...messageHistory]);
+  }, [lastJsonMessage])
 
   const handleClickChangeSocketUrl = useCallback(
     () => setSocketUrl(WS_URL),
@@ -45,12 +48,6 @@ function App() {
     [ReadyState.CLOSED]: 'Closed',
     [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
   }[readyState];
-
-  const rows = [
-    { id: 1, col1: 'Hello', col2: 'World' },
-    { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-    { id: 3, col1: 'MUI', col2: 'is Amazing' },
-  ];
   
   const columns = [
     { field: 'id', headerName: 'id', width: 150 },
