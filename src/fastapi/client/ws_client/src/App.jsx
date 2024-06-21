@@ -50,35 +50,17 @@ function App() {
   }[readyState];
   
   const columns = [
-    { field: 'id', headerName: 'id', width: 150 },
+    { field: 'id', headerName: 'id', width: 300 },
     { field: 'severity', headerName: 'Severity', width: 150 },
-    { field: "message", headerName: "Message", width: 300}
+    { field: "message", headerName: "Message", width: 500}
   ];
 
   return (
     
     <div>
-        <div style={{ height: 300, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns} />
-    </div>
-      <button onClick={handleClickChangeSocketUrl}>
-        Click Me to change Socket Url
-      </button>
-      <button
-        onClick={handleClickSendMessage}
-        disabled={readyState !== ReadyState.OPEN}
-      >
-        Click Me to send 'Hello'
-      </button>
-      <span>The WebSocket is currently {connectionStatus}</span>
-      {lastJsonMessage ? <span>Last message: {lastJsonMessage.data}</span> : null}
-      <ul>
-        {
-          messageHistory.map((message, idx) => {
-          return (<li key={idx}><span key={idx}>{message ? message.message : null}</span></li>)
-          })
-        }
-      </ul>
+      <div style={{ height: 600, width: '100%' }}>
+        <DataGrid rows={rows} columns={columns} />
+      </div>
     </div>
   );
 };
