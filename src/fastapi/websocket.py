@@ -7,7 +7,6 @@ import datetime
 logger = getLogger("uvicorn.app")
 
 from fastapi import (
-    Depends,
     FastAPI,
     WebSocket,
     WebSocketDisconnect,
@@ -52,7 +51,7 @@ async def lifespan(app: FastAPI):
 
     yield
     logger.info("Shutdown Start!!!")
-    manager.all_disconnect()
+    await manager.all_disconnect()
     logger.info("Shutdown End  !!!")
 
 
@@ -97,17 +96,19 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             global queue
-            try:
-                while True:
-                    logger.info(f"Status = {websocket.application_state}")
-                    logger.info("Current Queue Size = " + str(len(queue)))
+            while True:
+                logger.info(f"Status = {websocket.application_state}")
+                logger.info("Current Queue Size = " + str(len(queue)))
+                item = None
+                try:
                     item = queue.pop(0)
-                    await manager.broadcast(item)
-                    logger.info(f"send {item}")
-            except IndexError:
-                logger.info("Waitting !!!")
-                await asyncio.sleep(10)
-                continue
+                except IndexError:
+                    await asyncio.sleep(5)
+                    # continue // ここのせいだった
+                logger.info(item)
+                await manager.broadcast(item)
+                logger.info(f"send {item}")
+                await asyncio.sleep(5)
 
     except WebSocketDisconnect:
         manager.disconnect(websocket)
