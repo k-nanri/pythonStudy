@@ -17,8 +17,18 @@ def get_request():
         print(f"Receive body: {r_json}")
 
 
+def post_request():
+    body = {"mode": "post", "data": "aaa"}
+    r = httpx.post("http://localhost:8000/item", json=body)
+    print(r)
+    if r.status_code == 200:
+        print("Post Request Success")
+        print(f"Response body: {r.json()}")
+
+
 def main():
-    get_request()
+    # get_request()
+    post_request()
 
 
 if __name__ == "__main__":
