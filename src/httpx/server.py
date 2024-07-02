@@ -14,6 +14,14 @@ async def get_items():
     return {"status": "OK"}
 
 
+@app.get("/item2", status_code=400)
+async def get_items_except():
+
+    logger.info("Receive GET Request.")
+
+    return {"status": "OK"}
+
+
 @app.post("/item")
 async def post_item(body: dict):
 
