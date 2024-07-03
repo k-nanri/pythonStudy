@@ -18,6 +18,21 @@ def get_request():
         print(f"Receive body: {r_json}")
 
 
+def get_request_log():
+
+    client = httpx.Client(
+        event_hooks={
+            "request": [log_request],
+            "response": [log_response, log_response2, log_response3],
+        }
+    )
+    r = client.get("http://localhost:8000/item")
+    if r.status_code == 200:
+        print("Operate Request Success")
+        r_json = r.json()
+        print(f"Receive body: {r_json}")
+
+
 def post_request():
     body = {"mode": "post", "data": "aaa"}
     r = httpx.post("http://localhost:8000/item", json=body)
@@ -25,6 +40,18 @@ def post_request():
     if r.status_code == 200:
         print("Post Request Success")
         print(f"Response body: {r.json()}")
+
+
+def post_request_exception():
+    body = {"mode": "post", "data": "aaa"}
+    r = httpx.post("http://localhost:8000/item2", json=body)
+    print(r)
+    try:
+        r.raise_for_status()
+        print("Post Request Success")
+        print(f"Response body: {r.json()}")
+    except httpx.HTTPStatusError as ex:
+        print(f"Error Response Status Code: {ex.response.status_code}")
 
 
 def get_request_except():
@@ -37,6 +64,22 @@ def get_request_except():
         print(f"Receive body: {r_json}")
     except httpx.HTTPStatusError as ex:
         print(f"Error Response Status Code: {ex.response.status_code}")
+
+
+def log_request(request):
+    print(f"Request Event Hook request={request}")
+
+
+def log_response(response):
+    print(f"Response Event Hook response={response}")
+
+
+def log_response2(response):
+    print(f"Status Code Check {response.status_code}")
+
+
+def log_response3(response):
+    print("last event hook function")
 
 
 async def async_get_request():
@@ -68,7 +111,9 @@ def main():
     # get_request()
     # post_request()
     # asyncio.run(reqeust())
-    get_request_except()
+    # get_request_except()
+    # post_request_exception()
+    get_request_log()
 
 
 if __name__ == "__main__":
