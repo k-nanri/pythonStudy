@@ -27,5 +27,17 @@ def sample2():
         raise
 
 
+def builtin():
+
+    print(f"abs func = {abs(+3.5)}")
+
+    all_sample = []
+    print(f"all func = {all(all_sample)}")
+
+    all_sample2 = []
+    print(f"all_sample2 = {any(all_sample2)}")
+
+
 # sample1()
-sample2()
+# sample2()
+builtin()
