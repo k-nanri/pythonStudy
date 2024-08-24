@@ -48,6 +48,8 @@ def builtin():
     print(f"not function = {callable("aaaa")}")
     print(f"function     = {callable(sample1)}")
 
+    # dir
+    print(f"dir = {dir()}")
 
 # sample1()
 # sample2()
