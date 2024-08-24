@@ -37,6 +37,17 @@ def builtin():
     all_sample2 = []
     print(f"all_sample2 = {any(all_sample2)}")
 
+    # ascii
+    print(f"ascii = {ascii("あああああ")}")
+    print(f"ascii = {ascii("aaa")}")
+
+    # bin
+    print(f"bin = {bin(8)}")
+
+    # callable
+    print(f"not function = {callable("aaaa")}")
+    print(f"function     = {callable(sample1)}")
+
 
 # sample1()
 # sample2()
