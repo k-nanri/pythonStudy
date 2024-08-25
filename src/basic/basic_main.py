@@ -51,6 +51,22 @@ def builtin():
     # dir
     print(f"dir = {dir()}")
 
+    # enumrate
+    arry = ["aaaa", "bbbb", "cccc", "dddd"]
+    for i, d in enumerate(arry):
+        print(f"i = {i}, d = {d}")
+        
+    print(filter(lambda i: i == "aaaa", arry))
+
+    # fronzenset
+    aaa = frozenset({"aaa", "ccc"})
+    print(aaa)
+    
+    # globals
+    print(globals())
+
+
+
 # sample1()
 # sample2()
 builtin()
