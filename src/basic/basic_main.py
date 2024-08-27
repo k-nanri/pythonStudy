@@ -1,3 +1,9 @@
+class Sample():
+    pass
+
+class HeadSample(Sample):
+    pass
+
 def f():
     excs = [OSError("error 1"), SystemError("error 2")]
     raise ExceptionGroup("there were problems", excs)
@@ -65,8 +71,34 @@ def builtin():
     # globals
     print(globals())
 
+    # hash
+    a = "test12345"
+    b = "test12345"
+    print(f"a hash = {hash(a)}")
+    print(f"b hash = {hash(b)}")
+
+    # hex
+    print(f"hex = {hex(25)}")
+
+    # id
+    print(f"id  = {id(a)}")
+
+    # input
+    s = input("入力してください:")
+    print(f"input result = {s}")
+
+    # insinsttance
+    s1 = Sample()
+    s2 = HeadSample()
+
+    print(f"Is s1 Sample ?     : {isinstance(s1, Sample)}")
+    print(f"Is s1 HeadSample ? : {isinstance(s1, HeadSample)}")
+    print(f"Is s2 Sample ?     : {isinstance(s2, Sample)}")
+    print(f"Is s2 HeadSample ? : {isinstance(s2, HeadSample)}")
 
 
 # sample1()
 # sample2()
 builtin()
+
+
