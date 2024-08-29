@@ -33,6 +33,11 @@ def sample2():
         raise
 
 
+def multi(x):
+    y = x*2
+    return y
+
+
 def builtin():
 
     print(f"abs func = {abs(+3.5)}")
@@ -95,6 +100,22 @@ def builtin():
     print(f"Is s1 HeadSample ? : {isinstance(s1, HeadSample)}")
     print(f"Is s2 Sample ?     : {isinstance(s2, Sample)}")
     print(f"Is s2 HeadSample ? : {isinstance(s2, HeadSample)}")
+
+    i1 = list()
+    i1.append("aaa")
+    i1.append("bbb")
+    i1.append("ccc")
+    i1.append("ddd")
+    i1.append("eee")
+
+    print(f"Type = {type(i1)}")
+    print(f"Type = {type(iter(i1))}")
+
+    for i in i1:
+        print(i)
+
+    num = [1, 2, 3, 4, 5]
+    print(f"num * 2 = {list(map(multi, num))}")
 
 
 # sample1()
