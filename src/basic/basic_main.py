@@ -38,6 +38,20 @@ def multi(x):
     return y
 
 
+def gettwo(x):
+    if x % 2 == 0:
+        return x
+    else:
+        return None
+
+
+def sort2(x):
+    print(x)
+    if x == 4:
+        return True
+    else:
+        return False
+
 def builtin():
 
     print(f"abs func = {abs(+3.5)}")
@@ -111,11 +125,30 @@ def builtin():
     print(f"Type = {type(i1)}")
     print(f"Type = {type(iter(i1))}")
 
+    # map
     for i in i1:
         print(i)
 
     num = [1, 2, 3, 4, 5]
     print(f"num * 2 = {list(map(multi, num))}")
+
+    # filter
+    print(f"filter = {list(filter(gettwo, num))}")
+
+    # max
+    print(f"max = {max(num)}")
+    
+    try:
+        max([])
+    except ValueError:
+        print("raise ValueError.")
+
+    print(f"max default = {max([], default=10)}")
+    print(f"max = {max(num, key=sort2)}")
+
+    # next
+    print(f"next = {next(iter(num))}")
+    
 
 
 # sample1()
