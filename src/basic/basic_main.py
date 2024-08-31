@@ -158,8 +158,29 @@ def builtin():
         print(item)
 
 
+def list_and_tuple_and_set():
+
+    print("========================================")
+    print(" list and tuplle and set")
+    print("========================================")
+
+    a = {1, 1, 2, 2, 3, 3}
+    print(a)
+
+    bb = {}
+    bb["1"] = "aa"
+    bb["3"] = "bb"
+    bb["2"] = "cc"
+    print(bb)
+
+    a1 = [1, 1, 2, 2, 3, 3,]
+    print(f"a1 = {a1}")
+    a2 = set(a1)
+    print(f"a2 = {a2}")
+
+
 # sample1()
 # sample2()
 builtin()
-
+list_and_tuple_and_set()
 
