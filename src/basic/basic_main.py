@@ -149,6 +149,13 @@ def builtin():
     # next
     print(f"next = {next(iter(num))}")
     
+    # tuple
+    a = ("a", "b", "c")
+    for aa in a:
+        print(aa)
+
+    for item in zip([1, 2, 3], ["aaa", "bbb", "ccc", "ddd"]):
+        print(item)
 
 
 # sample1()
