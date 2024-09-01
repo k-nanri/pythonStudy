@@ -179,8 +179,29 @@ def list_and_tuple_and_set():
     print(f"a2 = {a2}")
 
 
+class MyNumbers:
+    def __iter__(self):
+        self.a = 1
+        return self
+    
+    def __next__(self):
+        x = self.a
+        self.a += 1
+        return x
+
+
+
+
+
 # sample1()
 # sample2()
 builtin()
 list_and_tuple_and_set()
+x = lambda a, b: a + b + 10
+print(x(5, 5))
 
+myclass = MyNumbers()
+myiter = iter(myclass)
+print("== iterator =====")
+print(next(myiter))
+print(next(myiter))
