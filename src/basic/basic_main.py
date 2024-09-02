@@ -190,7 +190,32 @@ class MyNumbers:
         return x
 
 
+class MyData:
+    def __init__(self, x: int):
+        self.x = x
 
+
+class MyDataMng:
+
+    def __init__(self):
+        self.data: list[MyData] = []
+        self.max = len(self.data)
+
+    def add(self, mydata: MyData):
+        self.data.append(mydata)
+        self.max = len(self.data)
+
+    def __iter__(self):
+        self.n = 0
+        return self
+
+    def __next__(self):
+        if self.n < self.max:
+            data = self.data[self.n]
+            self.n += 1
+            return data
+        else:
+            raise StopIteration
 
 
 # sample1()
@@ -205,3 +230,12 @@ myiter = iter(myclass)
 print("== iterator =====")
 print(next(myiter))
 print(next(myiter))
+
+mydatamng = MyDataMng()
+mydatamng.add(MyData(1))
+mydatamng.add(MyData(2))
+mydatamng.add(MyData(3))
+
+print("== 自作iterator ===")
+for d in mydatamng:
+    print(d.x)
