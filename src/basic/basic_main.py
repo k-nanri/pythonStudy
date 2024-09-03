@@ -1,3 +1,7 @@
+from pathlib import Path
+import asyncio
+import time
+
 class Sample():
     pass
 
@@ -239,3 +243,31 @@ mydatamng.add(MyData(3))
 print("== 自作iterator ===")
 for d in mydatamng:
     print(d.x)
+
+print("== Pathlib =========")
+p = Path("../")
+for x in p.iterdir():
+    if x.is_dir():
+        print(x)
+
+
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+
+
+async def main():
+
+    task1 = asyncio.create_task(say_after(1, "hello"))
+    task2 = asyncio.create_task(say_after(2, "world"))
+
+    print(f"started at {time.strftime('%X')}")
+
+    await task1
+    await task2
+
+    print(f"finished at {time.strftime('%X')}")
+
+
+print("Async!!")
+asyncio.run(main())
