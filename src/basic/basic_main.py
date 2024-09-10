@@ -271,3 +271,37 @@ async def main():
 
 print("Async!!")
 asyncio.run(main())
+
+
+async def main2():
+    async with asyncio.TaskGroup() as tg:
+        task11 = tg.create_task(
+            say_after(1, "hello2")
+        )
+        task22 = tg.create_task(
+            say_after(2, "world2")
+        )
+        print(f"started at {time.strftime('%X')}")
+    print(f"finished at {time.strftime('%X')}")
+
+
+print("TaskGroup!!")
+asyncio.run(main2())
+
+
+async def test_gather(sleep_time, value):
+    await asyncio.sleep(sleep_time)
+    return value
+
+
+print("gather start")
+async def main3():
+    results = await asyncio.gather(
+                test_gather(1, "aaa"),
+                test_gather(2, "bbb"),
+                test_gather(5, "ccc")
+            )
+    for r in results:
+        print(f"result = {r}")
+
+asyncio.run(main3())
