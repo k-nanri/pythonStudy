@@ -305,3 +305,42 @@ async def main3():
         print(f"result = {r}")
 
 asyncio.run(main3())
+
+
+async def long_task():
+    print(f"Start Sleep {time.strftime('%X')}")
+    await asyncio.sleep(30)
+    print(f"Wake Up!! {time.strftime('%X')}")
+
+
+async def main4():
+    print(f"Timeout Sample is started {time.strftime('%X')}")
+    try:
+        async with asyncio.timeout(10):
+            await long_task()
+    except TimeoutError:
+        print("Timeout!!")
+
+    print(f"Timeout Sample is Finished {time.strftime('%X')}")
+
+asyncio.run(main4())
+
+async def main5():
+    print(f"Timeout sample2 started {time.strftime('%X')}")
+    try:
+        async with asyncio.timeout(None) as cm:
+            new_timeout = 30
+            cm.reschedule(new_timeout)
+
+            await long_task()
+
+    except TimeoutError:
+        print("Timeout2!!")
+    
+    print("cm.expired = " + str(cm.expired()))
+    if cm.expired():
+        print("Looks")
+
+    print(f"Timeout Sample2 is Finished!!! {time.strftime('%X')}")
+
+asyncio.run(main5())
