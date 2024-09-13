@@ -344,3 +344,27 @@ async def main5():
     print(f"Timeout Sample2 is Finished!!! {time.strftime('%X')}")
 
 asyncio.run(main5())
+
+
+async def main6():
+    print(f"Timeout Sample3 is started {time.strftime('%X')}")
+    try:
+        async with asyncio.timeout_at(100):
+            await long_task()
+    except TimeoutError:
+        print("Timeout!!")
+
+    print(f"Timeout Sample3 is Finished {time.strftime('%X')}")
+
+asyncio.run(main6())
+
+async def main6():
+    print(f"Timeout Sample4 is started {time.strftime('%X')}")
+    try:
+        await asyncio.wait_for(long_task(), 10)
+    except TimeoutError:
+        print("Timeout!!")
+
+    print(f"Timeout Sample4 is Finished {time.strftime('%X')}")
+
+asyncio.run(main6())
