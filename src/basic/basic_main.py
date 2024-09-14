@@ -368,3 +368,27 @@ async def main6():
     print(f"Timeout Sample4 is Finished {time.strftime('%X')}")
 
 asyncio.run(main6())
+
+# リストの内包表記
+
+name = [0 for i in range(10)]
+print(f"name = {name}")
+
+name = [i ** 2 for i in range(10)]
+print(f"name = {name}")
+
+name = [0 if i % 2 == 0 else 1 for i in range(10)]
+print(f"name = {name}")
+
+s = 'Bye'
+l = [' ' + char.upper() + ' ' for char in s]
+print(f"l = {l}")
+
+s1 = []
+for i in range(20):
+    s1.append(i)
+
+print(f"s1 = {s1}")
+
+s2 = [i for i in s1 if i % 2 == 0]
+print(f"s2 = {s2}")
