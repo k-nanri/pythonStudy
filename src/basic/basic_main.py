@@ -392,3 +392,28 @@ print(f"s1 = {s1}")
 
 s2 = [i for i in s1 if i % 2 == 0]
 print(f"s2 = {s2}")
+
+print("--- ネストしたループ ------")
+for var1 in range(3):
+    for var2 in range(2):
+        print((var1, var2))
+
+
+print("--- リスト内包表記 -------")
+l2 = [(var1, var2) for var1 in range(3) for var2 in range(2)]
+print(l2)
+
+print("--- ジェネレータ式 -------")
+
+
+def squares(length):
+    for n in range(length):
+        yield n ** 2
+
+
+for square in squares(5):
+    print(square)
+
+l3 = (n ** 2 for n in range(10))
+for ll in l3:
+    print(ll)
