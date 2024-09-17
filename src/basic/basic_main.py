@@ -417,3 +417,35 @@ for square in squares(5):
 l3 = (n ** 2 for n in range(10))
 for ll in l3:
     print(ll)
+
+
+class NewException(Exception):
+    pass
+
+
+class Contextmgr1():
+
+    def __init__(self):
+        print("__init__が実行されました")
+
+    def __enter__(self):
+        print("__enter__が実行されました")
+        return self
+    
+    def __exit__(self, type, value, traceback):
+        print("__exit__が実行されました")
+        print(f"type={type}, value={value}, traceback={traceback}")
+
+        # なぜここがFalse?
+        print(f"isinstance = {isinstance(type, NewException)}")
+
+    def call(self):
+        print("callメソッドが実行されました")
+
+
+with Contextmgr1() as cm:
+    print("with statement!!")
+    cm.call()
+    raise NewException("hogeeee")
+
+
