@@ -1,6 +1,7 @@
 from pathlib import Path
 import asyncio
 import time
+from contextlib import contextmanager
 
 class Sample():
     pass
@@ -437,7 +438,7 @@ class Contextmgr1():
         print(f"type={type}, value={value}, traceback={traceback}")
 
         # なぜここがFalse?
-        print(f"isinstance = {isinstance(type, NewException)}")
+        print(f"isinstance = {isinstance(type, main.Exception)}")
 
     def call(self):
         print("callメソッドが実行されました")
@@ -449,3 +450,6 @@ with Contextmgr1() as cm:
     raise NewException("hogeeee")
 
 
+@contextmanager
+def open2():
+    
